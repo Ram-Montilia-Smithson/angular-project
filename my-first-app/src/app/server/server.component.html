@@ -1,0 +1,10 @@
+<!-- both the variable and the function refer to a string value, so inserting them into the template will not resolve in an error -->
+<!-- [ngStyle] is a build in attribute directive, which receives a JS object within the quotation marks using the property binding method
+the key: value pairs are much like css's, in this case the value is being returned by the getColor function -->
+<!-- [ngClass] is a build in attribute directive, which receives a JS object within the quotation marks using the property binding method
+the key is s class and the value is a boolean that determines weather the class would be added to the element or not -->
+
+<h1
+  [ngStyle]="{backgroundColor: getColor()}"
+  [ngClass]="{online: serverStatus === 'online'}">
+  {{"Server"}} with ID {{serverId}} is {{getServerStatus()}}</h1>

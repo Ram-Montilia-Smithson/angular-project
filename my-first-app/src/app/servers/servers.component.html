@@ -1,0 +1,29 @@
+<label>Server Name</label>
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)] = "serverName">
+
+  <!-- we use {{string interpolation}} for strings and numbers to present to the user and property binding for more complicated values -->
+  <!-- property binding - using [] around the HTML attribute will allow binding properties to it,
+  using the "" around the property will color the property like a value -->
+  <!-- event binding is used by surrounding the attribute with parentheses and the action taken between the quotation marks,
+  it gives access to $event which holds the data of the event that can be passed to the action (function) and be used to exract the right data -->
+  <!-- [(ngModel)] is used for two way data binding and we set it to equal the value we want to change -->
+
+<button
+  [disabled]="!allowNewServer"
+  class="btn btn-primary"
+  (click)="onCreateServer($event)">
+  Add Server
+</button>
+
+  <!-- יש הרבה דרכים לרפרר בין הקומפוננט לטמפלייט, תסתכל בסרבר קומפוננט -->
+  <!-- <div app-app-server></div> -->
+  <!-- <div class="app-server"></div> -->
+
+  <!-- the paragraph will show only if the *ngIf would be true -->
+<p *ngIf="serverCreated">Server was created! Name is {{serverName}}</p>
+
+  <!-- the app-server will be added to the DOM for every item in the array to which the *ngFor is looping through -->
+<app-server *ngFor="let server of servers"></app-server>
