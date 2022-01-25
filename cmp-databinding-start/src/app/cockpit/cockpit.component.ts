@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, ElementRef, ViewChild } from "@angular/core";
 
 @Component({
   selector: "app-cockpit",
@@ -17,22 +17,27 @@ export class CockpitComponent implements OnInit {
     serverContent: string;
   }>();
 
+  // local references can be fetched from the template with @ViewChild() decorator and be used directly here in the component
+  // you insert a string with the element referance's name within the parenthesis as the first argument and {static: true} as the second one,
+  // and with it, declare a variable that would refer to that element
+  @ViewChild('serverContentInput', {static: true}) serverContentInputRef: ElementRef
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  onAddServer(serverNameInput: string, serverContentInput: string) {
-    console.log(serverNameInput, serverContentInput);
+  onAddServer(serverNameInput: string) {
+    console.log(this.serverContentInputRef);
     this.serverCreated.emit({
       serverName: serverNameInput,
-      serverContent: serverContentInput
+      serverContent: this.serverContentInputRef.nativeElement.value
     });
   }
 
-  onAddBlueprint(serverNameInput: string, serverContentInput: string) {
+  onAddBlueprint(serverNameInput: string) {
     this.eventName1.emit({
       serverName: serverNameInput,
-      serverContent: serverContentInput
+      serverContent: this.serverContentInputRef.nativeElement.value
     });
   }
 }
