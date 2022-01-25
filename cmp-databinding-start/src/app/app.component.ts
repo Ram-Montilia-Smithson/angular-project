@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   // in developer tools/sources/top/webpack:// - you can find all your files of angular and use a debugger to find errors
+  // @ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef; @ContentChild() ngOnInit()
 
   serverElements = [];
 

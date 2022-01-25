@@ -6,14 +6,14 @@
       type="text"
       class="form-control"
       #serverNameInput>
+      <!-- #serverNameInput is a local referance to the input element -->
     <label>Server Content</label>
-    <!-- 'serverNameInput.value' check usage of local referances within the template-->
     <input
       type="text"
       class="form-control"
       #serverContentInput>
     <br>
-    <button class="btn btn-primary" (click)="onAddServer(serverNameInput, serverContentInput)">Add Server</button>
-    <button class="btn btn-primary" (click)="onAddBlueprint(serverNameInput, serverContentInput)">Add Server Blueprint</button>
+    <button class="btn btn-primary" (click)="onAddServer(serverNameInput.value, serverContentInput.value)">Add Server</button>
+    <button class="btn btn-primary" (click)="onAddBlueprint(serverNameInput.value, serverContentInput.value)">Add Server Blueprint</button>
   </div>
 </div>

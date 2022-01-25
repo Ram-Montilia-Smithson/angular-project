@@ -3,10 +3,11 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-server-element',
   templateUrl: './server-element.component.html',
-  styles: ['p {color: blue;} label {color: green;}'],
+  styles: ['p {color: blue; background-color: white; font-weight: bold} label {color: white;} div {background-color: black}'],
   encapsulation: ViewEncapsulation.None // will make the css declared inside this component active throughout the app,
   // but only once this component is rendered in the DOM of course
-  // encapsulation: ViewEncapsulation.ShadowDom ?????? needs more explanation
+  // encapsulation: ViewEncapsulation.ShadowDom will reset to defalut and overwrite all css declared in this component and it's children
+  //  encapsulation: ViewEncapsulation.Emulated is the default setting of ViewEncapsulation (=== not defining it at all)
 })
 export class ServerElementComponent implements OnInit {
   // the values passed to this element through the parent component can now be usable by adding the @Input() decorator
