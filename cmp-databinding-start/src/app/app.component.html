@@ -1,0 +1,19 @@
+<div class="container">
+  <!-- binding costume events:
+  much like event binding, but I assign the name of the event within the braces and declare it within the child component,
+  and the value between the double quotes is the function declared in the parent component (exactly like regular event binding),
+  the $event is passing data with the function up to the parent component -->
+  <app-cockpit
+    (serverCreated)="onServerAdded($event)"
+    (eventName2)="eventName3($event)"></app-cockpit>
+  <hr>
+  <!-- binding with square bracets to any name i choose to call the value i'm passing to the child component,
+     much like react syntax: givenName={value} -->
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-element
+        *ngFor="let elementName1 of serverElements"
+        [elementName2]="elementName1"></app-server-element>
+    </div>
+  </div>
+</div>
