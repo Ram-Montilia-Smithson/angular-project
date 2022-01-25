@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ElementRef, ViewChild } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from "@angular/core";
 
 @Component({
   selector: "app-cockpit",
@@ -18,8 +18,9 @@ export class CockpitComponent implements OnInit {
   }>();
 
   // local references can be fetched from the template with @ViewChild() decorator and be used directly here in the component
-  // you insert a string with the element referance's name within the parenthesis as the first argument and {static: true} as the second one,
+  // you insert a string with the element reference's name within the parenthesis as the an argument,
   // and with it, declare a variable that would refer to that element
+  // you add {static: true} as a second argument to @ViewChild() to .....
   @ViewChild('serverContentInput', {static: true}) serverContentInputRef: ElementRef
 
   constructor() {}

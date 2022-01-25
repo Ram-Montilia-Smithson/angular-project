@@ -8,7 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   // in developer tools/sources/top/webpack:// - you can find all your files of angular and use a debugger to find errors
-  // @ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef; @ContentChild() ngOnInit()
+
+  // life cycle methods:
+  // ngAfterContentInit runs when the parent component's ng-content has been projected into the view
+  // ngAfterContentChecked runs every time the projected content has been checked
+  // ngAfterViewInit runs after the component's view and it's children's has been initialized
+  // ngAfterViewChecked runs every time the component's view and it children's have been checked
+  // ngOnDestroy runs once, just before the component is destroyed
 
   serverElements = [];
 
@@ -26,6 +32,10 @@ export class AppComponent {
       name: blueprintData.serverName,
       content: blueprintData.serverContent
     });
+  }
+
+  onChangeFirst() {
+    this.serverElements[0].name = "changed!"
   }
 
 }
