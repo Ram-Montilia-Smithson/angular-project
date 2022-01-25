@@ -1,9 +1,7 @@
 <div class="panel panel-default">
-  <div class="panel-heading">{{ elementName3.name }}</div>
+  <div class="panel-heading">{{ serverElementName3.name }}</div>
   <div class="panel-body">
-    <p>
-      <strong *ngIf="elementName3.type === 'server'" style="color: red">{{ elementName3.content }}</strong>
-      <em *ngIf="elementName3.type === 'blueprint'">{{ elementName3.content }}</em>
-    </p>
+    <!-- the paragraph passed to this component will appear in the template by adding the ng-content directive, which is used like a selector -->
+    <ng-content></ng-content>
   </div>
 </div>

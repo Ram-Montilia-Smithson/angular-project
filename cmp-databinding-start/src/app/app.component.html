@@ -7,13 +7,19 @@
     (serverCreated)="onServerAdded($event)"
     (eventName2)="eventName3($event)"></app-cockpit>
   <hr>
-  <!-- binding with square bracets to any name I choose to call the value i'm passing to the child component,
+  <!-- binding with square brackets to any name I choose to call the value i'm passing to the child component,
      much like the react syntax: givenName={value} -->
   <div class="row">
     <div class="col-xs-12">
-      <app-server-element
-        *ngFor="let elementName1 of serverElements"
-        [elementName2]="elementName1"></app-server-element>
+      <app-server-element *ngFor="let serverElementName1 of serverElements" [serverElementName2]="serverElementName1">
+
+        <!-- between the opening and closing tags of app-server-element, I'm passing a paragraph element that would be used by the app-server-element -->
+        <p>
+          <strong *ngIf="serverElementName1.type === 'server'" style="color: red">{{ serverElementName1.content }}</strong>
+          <em *ngIf="serverElementName1.type === 'blueprint'">{{ serverElementName1.content }}</em>
+        </p>
+        
+      </app-server-element>
     </div>
   </div>
 </div>
