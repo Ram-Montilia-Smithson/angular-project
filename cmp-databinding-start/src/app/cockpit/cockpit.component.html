@@ -12,6 +12,8 @@
       type="text"
       class="form-control"
       #serverContentInput>
+      <!-- #serverContentInput is a local reference to the Server Content input element,
+        and with it, the component can use the @ViewChild() decorator to create a reference to that element and it's values -->
     <br>
     <button class="btn btn-primary" (click)="onAddServer(serverNameInput.value)">Add Server</button>
     <button class="btn btn-primary" (click)="onAddBlueprint(serverNameInput.value)">Add Server Blueprint</button>

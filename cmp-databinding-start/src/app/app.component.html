@@ -11,7 +11,9 @@
      much like the react syntax: givenName={value} -->
   <div class="row">
     <div class="col-xs-12">
+      <!-- Change First Element button and Destroy First Element button are added to show life cycle methods in action -->
       <button class="btn btn-primary" (click)="onChangeFirst()">Change First Element</button>
+      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy First Element</button>
       <app-server-element
         *ngFor="let serverElementName1 of serverElements"
         [serverElementName2]="serverElementName1.name">
