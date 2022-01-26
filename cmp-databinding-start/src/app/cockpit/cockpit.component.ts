@@ -21,7 +21,6 @@ export class CockpitComponent {
   // local references can be fetched from the template with @ViewChild() decorator and be used directly here in the component
   // you insert a string with the element reference's name within the parenthesis as the an argument,
   // and with it, declare a variable that would refer to that element
-  // you can add {static: true} as a second argument to @ViewChild() to be able to use the reference inside ngOnInit().
   @ViewChild('serverContentInput') serverContentInputRef: ElementRef
 
   onAddServer(serverNameInput: string) {
