@@ -21,7 +21,7 @@
           (if it remained an object, than it would still refer to the same object and no changes would be detected) -->
 
         <!-- between the opening and closing tags of app-server-element, I'm passing a paragraph element that would be used by the app-server-element -->
-        <p>
+        <p #contentParagraph>
           <strong *ngIf="serverElementName1.type === 'server'" style="color: red">{{ serverElementName1.content }}</strong>
           <em *ngIf="serverElementName1.type === 'blueprint'">{{ serverElementName1.content }}</em>
         </p>

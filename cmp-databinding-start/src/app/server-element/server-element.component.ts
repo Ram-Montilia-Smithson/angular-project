@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck,
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck,
   ElementRef,
   Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 
@@ -19,6 +19,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   // you add {static: true} as a second argument to @ViewChild() to be able to use the reference inside ngOnInit().
   @ViewChild('heading', {static: true}) header: ElementRef<HTMLElement>;
+
+  @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef<HTMLElement>
 
   // life cycle methods:
   // ngOnInit is a lifecycle hook that runs when the component is being initiated, not necessarily when it is appearing in the DOM, runs after the constructor
@@ -43,7 +45,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngOnInit(): void {
     console.log("ngOnInit");
-    console.log(this.header.nativeElement.innerHTML); // does not work somehow, but no error is thrown
+    console.log(this.header.nativeElement.innerText); // does not work somehow, but no error is thrown
+    console.log(this.paragraph.nativeElement.textContent); // does not work somehow, but no error is thrown
   }
 
   ngDoCheck(): void {
@@ -52,6 +55,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterContentInit(): void {
     console.log("ngAfterContentInit"); // only once in this example
+    console.log(this.paragraph.nativeElement.textContent); // works
   }
 
   ngAfterContentChecked(): void {
