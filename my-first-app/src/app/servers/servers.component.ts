@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-servers',
-  templateUrl: './servers.component.html',
+  templateUrl: './servers.component.html'
   // יש מספר דרכים להוסיף סטיילינג לקומפוננט
   // אפשר לרפרר לקובץ ססס
-  // או להוסיף בקומפוננט ישירות, לדוגמא תסתכל לקומפוננט התראת אזהרה
-  styleUrls: ['./servers.component.css'],
+  // או להוסיף בקומפוננט ישירות, לדוגמא תסתכל בקומפוננט התראת אזהרה
 })
-export class ServersComponent implements OnInit {
+export class ServersComponent {
 
   allowNewServer = false;
   serverCreationStatus = "No server was created!";
@@ -21,8 +20,6 @@ export class ServersComponent implements OnInit {
       this.allowNewServer = true
     }, 2000);
   }
-
-  ngOnInit(): void {}
 
   onCreateServer(event: any) {
     console.log(event.target.value);

@@ -6,11 +6,7 @@ import { Component } from '@angular/core';
   // selector: '.app-server', through class name
   selector: 'app-server',
   templateUrl: './server.component.html',
-  styles: [`
-    .online {
-      color: white
-    }
-  `]
+  styles: ['.online {color: white}']
 })
 export class ServerComponent {
   // defining string variables here, then i can use them in the template

@@ -35,4 +35,16 @@ export class AppComponent {
     this.serverElements.splice(0,1)
   }
 
+  // game control
+  oddNumbers: number[] = []
+  evenNumbers: number[] =[]
+
+  onEverySecond(number: number) {
+    if (number % 2 === 0) {
+      this.evenNumbers.push(number)
+    } else {
+      this.oddNumbers.push(number)
+    }
+  }
+
 }

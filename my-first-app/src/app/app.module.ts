@@ -9,7 +9,7 @@ import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { WarningAlertComponent } from './warning-alert/warning-alert.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
-import { PracticingDatabindingComponent } from './practicing-databinding/practicing-databinding.component';
+import { PracticingDataBindingComponent } from './practicing-databinding/practicing-databinding.component';
 import { PracticingDirectivesComponent } from './practicing-directives/practicing-directives.component';
 
 
@@ -20,7 +20,7 @@ import { PracticingDirectivesComponent } from './practicing-directives/practicin
     ServersComponent,
     WarningAlertComponent,
     SuccessAlertComponent,
-    PracticingDatabindingComponent,
+    PracticingDataBindingComponent,
     PracticingDirectivesComponent
   ],
   imports: [
