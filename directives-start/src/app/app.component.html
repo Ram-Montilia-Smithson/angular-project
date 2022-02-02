@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">
+        Only show odd numbers
+      </button>
+      <br /><br />
+      <ul class="list-group">
+        <!-- costume structural directive -->
+        <div *appUnless="onlyOdd">
+          <li
+            *ngFor="let odd of oddNumbers" 
+            class="list-group-item" 
+            [ngClass]="{odd: odd % 2 !== 0}"
+            [ngStyle]="{backgroundColor: odd % 2 !== 0 ? 'pink' : 'lightblue'}">
+            {{ odd }}
+          </li>
+        </div>
+        <!-- inside ng-template, ngIf works just the same without the *, but wrapped inside square brackets, like property binding -->
+        <ng-template [ngIf]="!onlyOdd">
+          <li 
+            *ngFor="let even of evenNumbers" 
+            class="list-group-item"
+            [ngClass]="{even: even % 2 === 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'pink' : 'lightblue'}">
+            {{ even }}
+          </li>
+      </ng-template>
+      </ul>
+
+      <hr>
+
+      <!-- adding costume attribute directives to elements -->
+      <p appBasicHighlight>Style me with basic directive!</p>
+      
+      <!-- binding values to properties as well -->
+      <!-- and to confuse a bit more, wrapping the attribute directive with square brackets
+        and assigning a value to it because of a property within the directive with the same name -->
+      <!-- it is possible to bing a value to a property without the square brackets as well -->
+      <!-- just need to be very clear that this is still property binding and not an actual property of the element -->
+      <!-- so it looks quite the opposite from how it has started -->
+      <p 
+        [appBetterHighlight]="'purple'"
+        defaultColor="yellow"
+        defaultBackgroundColor="orange">
+        Style me with a better directive!
+      </p>
+
+      <!-- ngSwitch, to be used instead of many cases of ngIfs,
+        the parent element should have the ngSwitch attribute wrapped with square brackets assigned to a value,
+        and the children should have ngSwitchCase with the star at the beginning showing it is a structural directive,
+        each assigned to a different value which, if it is the same as the parent's value, this element will be rendered,
+        and of course, the default case in case none of the values match -->
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is Default</p>
+      </div>
+
+    </div>
+  </div>
+</div>
