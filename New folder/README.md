@@ -7,7 +7,7 @@ ng new <MY_PROJECT>
 Create the `.npmrc` file in the root directory and paste the contents:
 ```
 @ComraxLTD:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=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
+//npm.pkg.github.com/:_authToken=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
 ```
 
 #
@@ -59,7 +59,7 @@ import { MaterialModule } from '../angular-material/material.module';
 export class AppModule { }
 ```
 
-### Create `material.module.ts` file in the app directory and import and export all the modules you wish to use.
+### Create `angular-material` folder in the src directory and `material.module.ts` file in the angular-material directory and import and export all the modules you wish to use.
 
 #
 
