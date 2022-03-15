@@ -1,0 +1,28 @@
+<div class="add-bee-plan">
+    <app-add-bee-plan-header></app-add-bee-plan-header>
+    <div class="add-bee-plan__treeTypes">
+  
+    <div
+    class="add-bee-plan__treeTypes-filter"
+    *ngFor="let item of treeTypes; let i = index"
+    [ngClass]="{'chosen':'all' === item.filterValue}"  
+  >
+    <span class="add-bee-plan__treeTypes-filter-text">{{ item.name }}</span>
+    <span class="add-bee-plan__treeTypes-filter-number">{{ item.count }}</span>
+    <svg-icon
+      class="add-bee-plan__treeTypes-filter-svg"
+      src="{{item.urlSrc}}"
+    ></svg-icon> 
+  </div>
+  </div> 
+<app-new-add-bee-plan-table  [treeTypes]="treeTypes" (updateTreeTypes)="updateTreeTypes($event)"></app-new-add-bee-plan-table>
+  <!-- <app-add-bee-plan-table ></app-add-bee-plan-table> -->
+  <!-- <svg-icon
+  class="bottom-icon"
+  src="assets/images/tree-gradient.svg" 
+></svg-icon> -->
+
+<app-bottom-navigation   [continueBtnText]='"שמור"'
+(changePage)="bottomNavigaitonHandler($event)"></app-bottom-navigation>
+
+</div>

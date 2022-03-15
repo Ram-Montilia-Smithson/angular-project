@@ -1,0 +1,18 @@
+<div class="bottom-navigation-container">
+<div class="bottom-navigation">
+
+    <div class="bottom-navigation__back">
+      <button  class="bottom-navigation__back-link"
+      (click)="previousPageHandler()"
+      ><span class="chevron"></span
+        ></button>
+      </div>
+      <svg-icon
+      class="kkl-icon"
+      src="assets/images/tree-gradient.svg"
+    ></svg-icon>
+      <button class="bottom-navigation__forward"
+      (click)="nextPageHandler()"
+      >{{continueBtnText}}</button>
+    </div>
+</div>

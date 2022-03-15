@@ -1,0 +1,23 @@
+@use "variables" as main;
+
+mat-toolbar {
+  padding-left: main.spacing(5);
+  padding-right: main.spacing(5);
+}
+
+div {
+  height: 100%;
+}
+
+kkl-icon {
+  width: 100%;
+  height: 100%;
+}
+
+button.prev {
+  background-color: main.color(paper) !important;
+}
+
+.next-btn {
+  background-color: main.color(primary) !important;
+}

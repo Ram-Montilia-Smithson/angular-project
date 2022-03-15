@@ -1,0 +1,15 @@
+<div
+  dir="rtl"
+  class="item"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  fxLayoutGap="1rem"
+>
+  <kkl-typography [size]="item.size">
+    {{ item?.label }}
+  </kkl-typography>
+
+  <kkl-typography mat-line [size]="item.size">
+    {{ item.value | format: item.format }}
+  </kkl-typography>
+</div>

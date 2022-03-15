@@ -1,0 +1,10 @@
+@use "variables" as main;
+
+.label-text {
+  padding-left: main.spacing(1);
+}
+
+div {
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,20 @@
+@use "variables" as main;
+.new-add-bee-plan-table{
+width: calc(100% - 200px);
+::ng-deep .mat-form-field{
+  font-size: 1.2rem;
+}}
+.error {
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    opacity: 1 !important;
+    color: main.$warn;
+  }
+}
+
+.success {
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    opacity: 1 !important;
+    color: #d1d1d1;
+  }
+}
+

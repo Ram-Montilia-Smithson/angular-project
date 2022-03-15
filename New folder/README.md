@@ -7,7 +7,7 @@ ng new <MY_PROJECT>
 Create the `.npmrc` file in the root directory and paste the contents:
 ```
 @ComraxLTD:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=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
+//npm.pkg.github.com/:_authToken=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
 ```
 
 #
@@ -41,7 +41,7 @@ In app.module:
 
 ```
 import { KakalUiModule } from '@ComraxLTD/kakal-ui';
-import { MaterialModule } from '.../angular-material/material.module';
+import { MaterialModule } from '../angular-material/material.module';
 
 @NgModule({
   declarations: [
@@ -69,6 +69,7 @@ export class AppModule { }
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [],

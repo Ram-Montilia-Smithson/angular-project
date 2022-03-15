@@ -1,0 +1,75 @@
+<mat-toolbar
+  dir="rtl"
+  class="navbar mat-elevation-z4"
+  xLayout="row"
+  fxLayoutAlign="start center"
+>
+  <!-- toggle menu button -->
+  <div
+    fxFill
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxFlex="5rem"
+    appUnderline
+    appButton
+    (click)="toggleMenu()"
+  >
+    <div fxFlex="40">
+      <kkl-icon
+        *ngIf="!isOpen"
+        key="tree"
+        color="primary"
+        [size]="4"
+      ></kkl-icon>
+      <kkl-icon
+        *ngIf="isOpen"
+        [key]="openIcon"
+        color="primary"
+        fill="primary"
+        [size]="4"
+      ></kkl-icon>
+    </div>
+    <div fxFlex="10" fxLayout="column" fxLayoutAlign="start center">
+      <kkl-typography [size]="1" color="primary">
+        {{ isOpen ? closeLabel : openLabel }}
+      </kkl-typography>
+    </div>
+  </div>
+
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex
+    fxFlexOffset="1rem"
+  >
+    <kkl-typography [bold]="600" [size]="2.4">
+      {{ title$ | async }}
+    </kkl-typography>
+  </div>
+
+  <!-- main navbar links -->
+  <div fxFlex="grow" *ngIf="!(mobile$ | async)">
+    <div fxLayoutAlign="center center" *ngIf="show$ | async">
+      <kkl-stepper direction="row" [steps$]="status$"></kkl-stepper>
+    </div>
+  </div>
+
+  <div fxFlex></div>
+
+  <!-- left side logo -->
+  <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1rem">
+    <div *ngFor="let logo of logos">
+      <kkl-icon [key]="logo.key" [size]="6"></kkl-icon>
+    </div>
+  </div>
+</mat-toolbar>
+
+<ng-container *ngIf="mobile$ | async">
+  <mat-toolbar dir="rtl" *ngIf="show$ | async" class="mobile-status">
+    <div fxFlex="grow" fxFill>
+      <div fxLayoutAlign="center center">
+        <kkl-stepper direction="row" [steps$]="status$"></kkl-stepper>
+      </div>
+    </div>
+  </mat-toolbar>
+</ng-container>

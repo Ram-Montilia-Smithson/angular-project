@@ -1,0 +1,74 @@
+<table mat-table [dataSource]="dataSource" class="table">
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="customer">
+    <th mat-header-cell *matHeaderCellDef>לקוח</th>
+    <td mat-cell *matCellDef="let element;let i=index" ><div *ngIf="i==0|| element.lakoach!==dataSource.filteredData[i-1].lakoach" >{{ element.lakoach }}
+    </div>
+  </td>
+  </ng-container>
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>טלפון</th>
+    <td mat-cell *matCellDef="let element ;let i=index"><div *ngIf="i==0|| ((element.phone!==dataSource.filteredData[i-1].phone) || (element.lakoach!==dataSource.filteredData[i-1].lakoach))" >{{ element.phone }}</div></td>
+  </ng-container>
+  <ng-container matColumnDef="adress">
+    <th mat-header-cell *matHeaderCellDef>כתובת</th>
+    <td mat-cell *matCellDef="let element;let i=index"><div *ngIf="i==0|| ((element.address!==dataSource.filteredData[i-1].address) || (element.lakoach!==dataSource.filteredData[i-1].lakoach))" >{{ element.address }}</div></td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>דואל</th>
+    <td mat-cell *matCellDef="let element;let i=index"><div *ngIf="i==0|| ((element.email!==dataSource.filteredData[i-1].email)|| (element.lakoach!==dataSource.filteredData[i-1].lakoach))" >{{ element.email }}</div></td>
+  </ng-container>
+  <ng-container matColumnDef="plant">
+    <th mat-header-cell *matHeaderCellDef>צמח</th>
+    <!-- *ngIf="i==0|| element.minHatzemach!==dataSource.filteredData[i-1].minHatzemach" -->
+    <td mat-cell *matCellDef="let element;let i=index"><div  >{{ element.minHatzemach }}</div></td>
+  </ng-container>
+  <ng-container matColumnDef="totalCount">
+    <th mat-header-cell *matHeaderCellDef>כמות</th>
+    <td mat-cell *matCellDef="let element">{{ element.kamut }}</td>
+  </ng-container>
+  <ng-container matColumnDef="ashtaol">
+    <th mat-header-cell *matHeaderCellDef>אשתאול</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input 
+        [ngClass]="{ error: checkStatus(i) }"
+        (change)="checkTotalCount($event, i, 'ashtaol')"
+        type="number"
+      />
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="golani">
+    <th mat-header-cell *matHeaderCellDef>גולני</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input
+        [ngClass]="{ error: checkStatus(i) }"
+        (change)="checkTotalCount($event, i, 'golani')"
+        type="number"
+      />
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="gilat">
+    <th mat-header-cell *matHeaderCellDef>גילת</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input
+        [ngClass]="{ error: checkStatus(i) }"
+        (change)="checkTotalCount($event, i, 'gilat')"
+        type="number"
+      />
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="controllers">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <span (click)="deleteItem(i,element)" class="delete">מחק</span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

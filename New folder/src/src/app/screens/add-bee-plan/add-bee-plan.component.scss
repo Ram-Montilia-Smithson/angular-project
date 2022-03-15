@@ -1,0 +1,111 @@
+.add-bee-plan {
+  background-color: #ffffff !important;
+  height: calc(100% - 94px);
+  width: 100%;
+  padding: 0 100px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: scroll;
+
+  ::ng-deep .bottom-navigation {
+    position: fixed;
+    width: calc(100%);
+    // padding:  0 100px;
+    margin: 0;
+    direction: rtl;
+    bottom: 0;
+    right: 0;
+    background-color: #e9e9e9;
+    padding: 10px 0;
+    &__content{
+        width: calc(100% - 200px);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box; 
+    }
+  }
+
+  
+  &__treeTypes {
+    margin-top: 50px;
+    width: calc(100% - 200px);
+    display: flex;
+    flex-direction: row-reverse;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin-bottom: 30px;
+
+    &-filter {
+      background-color: #f5f5f5;
+      padding: 15px 5px;
+      display: flex;
+      width: 150px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      box-shadow: 0px 3px 10px 2px rgba($color: #000, $alpha: 0.2);
+      position: relative;
+      font-size: 15px;
+      &-number {
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      &-svg {
+        position: absolute;
+        border: 1px solid #ededed;
+        padding: 3px;
+        border-radius: 100px;
+        right: -10px;
+        top: -14px;
+        z-index: 100;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 1px 3px #ffffff;
+        display: flex;
+        height: 25px;
+        width: 25px;
+        & * {
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+.bottom-icon * {
+  height: 400px;
+  position: absolute;
+  width: 400px;
+  right: calc(50% - 200px);
+  // transform: translateX(1%);
+  bottom: -287px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.chosen {
+  background-color: #ffffff;
+  border: 1px solid #00c466;
+
+  & svg-icon {
+    background-color: #00c466;
+    & * {
+      fill: #ffffff;
+    }
+  }
+}
+
+app-spatial-header {
+  flex: 0 1 auto;
+}
+
+app-spatial-table {
+  width: calc(100% - 200px);
+  flex: 1 1 auto;
+  padding-bottom: 100px;
+  align-items: stretch;
+}

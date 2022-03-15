@@ -1,0 +1,54 @@
+<div class="kkl-column-filter" (click)="$event.stopPropagation()">
+  <ng-container [ngSwitch]="question.type">
+    <ng-container *ngSwitchCase="'custom'">
+      <ng-container
+        *ngTemplateOutlet="
+          slot;
+          context: {
+            row: this.row,
+            control: row.form.formGroup.controls[column.columnDef],
+            question: this.question,
+            column: this.column
+          }
+        "
+      ></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'group'">
+      <ng-container
+        *ngTemplateOutlet="
+          slot;
+          context: {
+            row: this.row,
+            control: row.form.formGroup.controls[column.columnDef],
+            question: this.question,
+            column: this.column
+          }
+        "
+      ></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'currency'">
+      <kkl-form-currency
+        [control]="row.form.formGroup.controls[column.columnDef]"
+        [question]="this.question"
+      >
+      </kkl-form-currency>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'date'">
+      <kkl-form-date
+        [control]="row.form.formGroup.controls[column.columnDef]"
+        [question]="question"
+      >
+      </kkl-form-date>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <kkl-form-input
+        [control]="row.form.formGroup.controls[column.columnDef]"
+        [question]="question"
+      ></kkl-form-input>
+    </ng-container>
+  </ng-container>
+</div>

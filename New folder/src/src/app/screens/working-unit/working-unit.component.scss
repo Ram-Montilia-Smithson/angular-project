@@ -1,0 +1,56 @@
+@import url('../../../styles.scss');
+
+.working-unit{
+    height: calc(100% - 90px);
+    width: 100%;
+    
+    overflow: hidden;
+//    background-image: url("./../../../assets/images/result-image-min.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    direction: rtl;
+    overflow: hidden;
+    // position: relative;
+    display: flex;
+
+    &__content{
+        flex: 1 1 60%;
+        overflow-y: auto;
+        overflow-x:hidden ;
+        // overflow: hidden;
+        // height: calc(110% + 60px);
+        height: 100%;
+        min-width: 60%;
+        max-width: 60%;
+        background-color: #ffffff;
+    }
+}
+
+.bottom-icon{
+    z-index: 1;
+}
+.bottom-icon *{
+    height: 400px;
+    position: absolute;
+    width: 400px;
+    right:calc(30% - 200px);
+    // transform: translateX(1%);  
+    bottom: -287px; 
+    opacity: 0.8 ;
+    z-index: 1;
+  }
+
+.map-side{
+    width: max-content;
+    flex: 1 1 40%;
+
+}
+
+
+.working-steps{
+    ::ng-deep .working-steps{
+    width: 80% !important;
+    margin  :0 auto; 
+
+    }
+}

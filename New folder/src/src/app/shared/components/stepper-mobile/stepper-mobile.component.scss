@@ -1,0 +1,12 @@
+@use "variables" as main;
+
+div.button {
+  background-color: main.color(paper);
+  border-radius: 5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+
+  &.active {
+    background-color: main.color(primary);
+  }
+}

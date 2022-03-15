@@ -1,0 +1,14 @@
+@use "variables" as main;
+
+:host {
+  button {
+    height: 3rem;
+    div {
+      height: 3rem;
+    }
+
+    &.disabled {
+      border: 1px solid main.color(default) !important;
+    }
+  }
+}

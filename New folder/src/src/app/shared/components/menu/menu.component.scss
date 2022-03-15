@@ -1,0 +1,27 @@
+@use "variables" as main;
+
+::ng-deep mat-accordion.menu {
+  width: inherit;
+
+  mat-expansion-panel-header {
+    padding-right: 0px;
+    width: inherit;
+    height: 4rem !important;
+  }
+
+  div.mat-expansion-panel-body {
+    padding: 0px !important;
+  }
+
+  ::ng-deep span.mat-expansion-indicator {
+    display: none;
+  }
+}
+
+kkl-menu-item {
+  width: 90%;
+
+  &:hover {
+    background-color: main.color(primary) !important;
+  }
+}

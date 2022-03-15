@@ -1,0 +1,188 @@
+<div>
+  <!-- BUTTON SECTION -->
+  <div appButton color="primary" [matMenuTriggerFor]="menu">
+    <div
+      fxLayout="row"
+      fxLayoutGap="3px"
+      dir="rtl"
+      fxLayoutAlign="start center"
+    >
+      <kkl-typography
+        [size]="1.4"
+        fxFlex="shrink"
+        [ngStyle]="{ width: column.columnFilterWidth }"
+        [bold]="600"
+      >
+        {{ column.label }}
+      </kkl-typography>
+
+      <!-- <kkl-icon 
+      class="chevron"
+      key='arrow_drop_down' [color]='"primary"' >  </kkl-icon> -->
+      <mat-icon
+        color="accent"
+        [ngClass]="{ active: (active$ | async) }"
+        class="chevron"
+      >
+        arrow_drop_down
+      </mat-icon>
+    </div>
+  </div>
+
+  <!-- MENU SECTION -->
+  <mat-menu #menu="matMenu" xPosition="after">
+    <ng-container [ngSwitch]="column.format">
+      <!-- DATES FILTER-->
+      <ng-container *ngSwitchCase="'date'">
+        <div
+          class="date"
+          fxLayout="row"
+          fxLayoutGap="1rem"
+          fxFlexAlign="start center"
+          (click)="$event.stopPropagation()"
+        >
+          <kkl-form-date
+            fxFlex="18rem"
+            range="true"
+            [control]="control"
+            (start)="onRangeDateEvent('from', $event, 'firstDate')"
+            (end)="onRangeDateEvent('to', $event, 'firstDate')"
+          >
+          </kkl-form-date>
+          <div
+            *ngIf="column.sortable"
+            class="sort-button"
+            fxLayout="column"
+            fxLayoutAlign="end center"
+          >
+            <div fxFlex="95">
+              <button mat-icon-button (click)="onSortClick()" class="sort-date">
+                <mat-icon
+                  [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+                  class="up"
+                  >arrow_right_alt</mat-icon
+                >
+                <mat-icon
+                  [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+                  class="down"
+                  >arrow_right_alt</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- CURRENCY FILTER-->
+
+      <ng-container *ngSwitchCase="'currency'">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="currency"
+          (click)="$event.stopPropagation()"
+        >
+          <div fxFlex="90">
+            <kkl-form
+              [group]="amountFilter"
+              (autocompleteEvent)="onCurrencyAutocomplete($event)"
+            ></kkl-form>
+          </div>
+          <div
+            *ngIf="column.sortable"
+            class="sort-button sort-currency"
+            fxLayout="column"
+            fxLayoutAlign="end center"
+          >
+            <div fxFlex="95">
+              <button mat-icon-button (click)="onSortClick()">
+                <mat-icon
+                  [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+                  class="up"
+                  >arrow_right_alt</mat-icon
+                >
+                <mat-icon
+                  [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+                  class="down"
+                  >arrow_right_alt</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <div
+          *ngIf="showSearch"
+          (click)="$event.stopPropagation()"
+          fxLayout="row"
+          fxLayoutAlign="space-evenly start"
+        >
+          <kkl-form-input
+            fxFlex="70"
+            dir="rtl"
+            [question]="searchQuestion"
+            [control]="searchQuestion.control"
+            (click)="$event.stopPropagation()"
+          >
+          </kkl-form-input>
+          <div
+            *ngIf="column.sortable"
+            class="sort-button"
+            fxLayout="column"
+            fxLayoutAlign="end center"
+          >
+            <div fxFlex="95">
+              <button mat-icon-button (click)="onSortClick()">
+                <mat-icon
+                  [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+                  class="up"
+                  >arrow_right_alt</mat-icon
+                >
+                <mat-icon
+                  [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+                  class="down"
+                  >arrow_right_alt</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <!-- CUSTOM OPTIONS -->
+    <div
+      class="custom-filter-container"
+      *ngIf="filterSlots"
+      (click)="$event.stopPropagation()"
+    >
+      <ng-container
+        *ngTemplateOutlet="filterSlots[column.columnDef]"
+      ></ng-container>
+    </div>
+
+    <!-- DEFAULT OPTIONS MENU -->
+    <ng-container *ngIf="column?.filterQuestion">
+      <mat-selection-list
+        #list
+        (selectionChange)="onSelectionChange(list.selectedOptions.selected)"
+        [multiple]="column.filterQuestion.multi"
+        dir="ltr" 
+        (click)="$event.stopPropagation()"
+      >
+        <mat-list-option
+          *ngFor="let option of column.filterQuestion['options']"
+          [value]="option.value"
+          [selected]="!!option.selected"
+        >
+          <kkl-typography [padding]='".5"'> {{ option.label }}</kkl-typography>
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-container>
+  </mat-menu>
+</div>
+
+<!-- subscribe to filter -->
+<ng-container *ngIf="filter$ | async"></ng-container>

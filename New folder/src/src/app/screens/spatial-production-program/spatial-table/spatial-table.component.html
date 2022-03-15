@@ -1,0 +1,356 @@
+<div class="spatial-table">
+  <p class="spatial-table__header">תכנון</p>
+  <app-filter-cards
+    [data]="data"
+    [totalCount]="totalCount"
+    [filters]="filtersArr"
+    (filteredData)="updateFilteredData($event)"
+  ></app-filter-cards>
+  
+  <div class="mat-elevation-z8 spatial-table">
+    <table
+      mat-table
+      [dataSource]="
+        filteredData | paginate: { itemsPerPage: 5, currentPage: page }
+      "
+    >
+      <form [formGroup]="spatialTableForm">
+        <!-- plantType Column -->
+        <ng-container matColumnDef="plantType">
+          <th mat-header-cell *matHeaderCellDef>
+            מין הצמח
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="planType"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #planType="matMenu">
+              <button
+                mat-menu-item
+                *ngFor="let item of plantTypes"
+                (click)="filterByplanType(item)"
+              >
+                {{ item.name }}
+              </button>
+            </mat-menu>
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <div class="plantType" *ngIf="!element.editable">
+              <span class="plantType-text"> {{ element.plantType }} </span>
+            </div>
+            <ng-container *ngIf="element.editable">
+              <input
+                formControlName="plantType"
+                type="text"
+                class="large-input"
+                [matAutocomplete]="auto"
+                [value]="element.plantType"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="filteredData[i].plantType"
+                [formControl]="plantTypeFormControl"
+                (input)="plantTypeCahnge($event.target.value)"
+                required
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let item of filteredPlantType | async"
+                  [value]="item.name"
+                  (click)="chosenplantType = item"
+                >
+                  <div class="auto-complete-option">
+                    <span>{{ item.name }}</span>
+                    <span>{{ item.code }}</span>
+                  </div>
+                  <div class="plant-family">
+                    <span>{{ item.mishpacha }}</span>
+                    <svg-icon
+                      src="{{ item.icon }}"
+                      class="family-icon"
+                    ></svg-icon>
+                  </div>
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="!isValid">יש לבחור איבר מהרשימה</mat-error>
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- amount Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>כמות</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-conatiner *ngIf="!element.editable">{{
+              element.kamut !== 0 ? element.amount : ""
+            }}</ng-conatiner>
+            <ng-container *ngIf="element.editable">
+              <input
+                type="number"
+                class="my-input"
+                [ngStyle]="{ width: '60px', textAlign: 'center' }"
+                [value]="element.amount"
+                [formControl]="amountFormControl"
+                [(ngModel)]="filteredData[i].amount"
+                required
+              />
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- area Column -->
+        <ng-container matColumnDef="area">
+          <th mat-header-cell *matHeaderCellDef>
+            אזור
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="area"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #area="matMenu">
+              <button
+                mat-menu-item
+                *ngFor="let item of listOfArea"
+                (click)="filterByEzor(item)"
+              >
+                {{ item?item.name: " " }}
+              </button>
+            </mat-menu>
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-conatiner *ngIf="!element.editable">{{
+              element.area?element.area.name: " "
+            }}</ng-conatiner>
+            <ng-container *ngIf="element.editable">
+              <div class="form-control">
+                <mat-select
+                  formControlName="area"
+                  matNativeControl
+                  class="my-input"
+                  [ngStyle]="{ width: '150px' }"
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="filteredData[i].area"
+                  [value]="element.area"
+                >
+                  <mat-option
+                    *ngFor="let item of areas"
+                    [value]="item"
+                    (click)="choosenArea = item"
+                    >{{ item?item.name:" " }}</mat-option
+                  >
+                </mat-select>
+              </div>
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- receptacle Column -->
+        <ng-container matColumnDef="receptacle">
+          <th mat-header-cell *matHeaderCellDef>
+            כלי קיבול
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="receptacle"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #receptacle="matMenu">
+              <button
+                mat-menu-item
+                *ngFor="let item of cliKibul"
+                (click)="filterBycliKibul(item)"
+              >
+                {{ item?item.name:" " }}
+              </button>
+            </mat-menu>
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-conatiner *ngIf="!element.editable">{{
+              element.receptacle?element.receptacle.name: " "
+            }}</ng-conatiner>
+            <ng-container *ngIf="element.editable">
+              <div class="form-control">
+                <mat-select
+                  formControlName="receptacle"
+                  matNativeControl
+                  class="my-input"
+                  [ngStyle]="{ width: '150px' }"
+                  [(ngModel)]="filteredData[i].receptacle"
+                  [value]="element.receptacle"
+                >
+                  <mat-option
+                    *ngFor="let item of receptacles"
+                    (click)="choosenReceptacle = item"
+                    [value]="item"
+                    >{{ item?item.name:" " }}</mat-option
+                  >
+                </mat-select>
+              </div>
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- multiplicityMaterial Column -->
+        <ng-container matColumnDef="multiplicityMaterial">
+          <th mat-header-cell *matHeaderCellDef>
+            חומר ריבוי
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="multiplicityMaterial"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #multiplicityMaterial="matMenu">
+              <button
+                mat-menu-item
+                *ngFor="let item of Ribuy"
+                (click)="filterByRibuy(item)"
+              >
+                {{ item?item.name:" " }}
+              </button>
+            </mat-menu>
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-conatiner *ngIf="!element.editable">{{
+              element.multiplicityMaterial?element.multiplicityMaterial.name: " "
+            }}</ng-conatiner>
+            <ng-container *ngIf="element.editable">
+              <mat-select
+                formControlName="multiplicityMaterial"
+                matNativeControl
+                class="my-input"
+                [ngStyle]="{ width: '150px' }"
+                [(ngModel)]="filteredData[i].multiplicityMaterial"
+                [value]="element.multiplicityMaterial"
+              >
+                <mat-option
+                  *ngFor="let item of multiplicityMaterial"
+                  (click)="chosenMultiplicityMaterial = item"
+                  [value]="item"
+                  >{{ item?item.name:" " }}</mat-option
+                >
+              </mat-select>
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- seedOrigin Column -->
+        <ng-container matColumnDef="seedOrigin">
+          <th mat-header-cell *matHeaderCellDef>
+            מקור הזרע
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="makor"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #makor="matMenu">
+              <button
+                mat-menu-item
+                *ngFor="let item of mekorot"
+                (click)="filterByMakor(item)"
+              >
+                {{ item?item.name:" " }}
+              </button>
+            </mat-menu>
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-conatiner *ngIf="!element.editable">{{
+              element.seedOrigin?element.seedOrigin.name: " "
+            }}</ng-conatiner>
+            <ng-container *ngIf="element.editable">
+              <!-- element.seedOrigin -->
+              <mat-select
+                formControlName="seedOrigin"
+                matNativeControl
+                class="my-input"
+                [ngStyle]="{ width: '150px' }"
+                [(ngModel)]="filteredData[i].seedOrigin"
+                [value]="element.seedOrigin"
+              >
+                <mat-option
+                  *ngFor="let item of seedOrigin"
+                  (click)="chosenSeedOrigin = item"
+                  [value]="item"
+                  >{{ item.name }}</mat-option
+                >
+              </mat-select>
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- comment Column -->
+        <ng-container matColumnDef="comment">
+          <th mat-header-cell *matHeaderCellDef>הערות</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <ng-conatiner *ngIf="!element.editable">{{
+              element.comment
+            }}</ng-conatiner>
+            <ng-container *ngIf="element.editable">
+              <input
+                formControlName="comment"
+                type="text"
+                class="my-input"
+                [ngStyle]="{ width: '100%' }"
+                [value]="element.comment"
+                [(ngModel)]="filteredData[i].comment"
+              />
+            </ng-container>
+          </td>
+        </ng-container>
+        <!-- controllers Column -->
+        <ng-container matColumnDef="controllers">
+          <th mat-header-cell *matHeaderCellDef>
+            <button
+              class="add-button"
+              [ngClass]="!addInputIsOpen ? 'add-button' : 'close-button'"
+              (click)="addInputHandler()"
+            >
+              {{ addInputIsOpen ? "בטל הוספה" : "הוספה" }}
+            </button>
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <div
+              class="controllers"
+              *ngIf="
+                element.controllers &&
+                !element.addColInTable &&
+                !element.editable
+              "
+            >
+              <span class="controllers-edit" (click)="makeElementEditable(i)"
+                >עריכה</span
+              >
+              <span
+                class="controllers-delete"
+                (click)="deleteRow(i, element.id, element.plantType)"
+                >מחק</span
+              >
+            </div>
+            <ng-container *ngIf="element.editable">
+              <button
+                mat-raised-button
+                [disabled]="!spatialTableForm.valid
+                "
+                class="save-buttom"
+                (click)="updateItemInArray(i)"
+              >
+                שמור
+              </button>
+            </ng-container>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </form>
+    </table>
+
+
+
+    <pagination-controls
+      (pageChange)="page = $event"
+      previousLabel="הקודם"
+      nextLabel="הבא"
+    ></pagination-controls>
+
+  </div>
+</div>

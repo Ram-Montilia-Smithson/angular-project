@@ -1,0 +1,21 @@
+<div fxFill>
+  <mat-dialog-content fxFill>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <ng-container *ngIf="data?.content">
+      <ng-container
+        *ngTemplateOutlet="data.content; context: { data: this.data }"
+      ></ng-container>
+    </ng-container>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+      <button mat-button mat-dialog-close>
+        <ng-container
+          *ngTemplateOutlet="data.button; context: { data: this.data }"
+        ></ng-container>
+      </button>
+    </div>
+  </mat-dialog-content>
+</div>

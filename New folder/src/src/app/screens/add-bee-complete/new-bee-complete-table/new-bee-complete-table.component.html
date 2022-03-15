@@ -1,0 +1,93 @@
+<div
+  class="new-bee-complete-table hide-action"
+  [ngClass]="{ 'hide-action': !hasActions }"
+>
+  <!-- <div class="new-bee-complete-table"> -->
+  <kkl-table
+    [ngClass]="{ 'hide-action': true }"
+    [data$]="data$"
+    [columns$]="columns$"
+    [model]="model"
+    [options]="options"
+    [hasState]="true"
+    [hasStatus]="true"
+    [filterable]="false"
+    [rowsState$]="rowsState$"
+    [columnsState$]="columnsState$"
+    [hasActions]="true"
+    [headerSlots]="{ actions: actionsHeader }"
+    [rowSlots]="!(showShortTable$ | async)? {actions}:{}" 
+    [formSlots]="{
+      ashtaol: ashtaolInput,
+      gilat: gilatInput,
+      golani: golaniInput
+    }"
+  >
+  </kkl-table>
+</div>
+<ng-template
+  #ashtaolInput
+  let-row="row"
+  let-control="control"
+  let-column="column"
+  let-question="question"
+>
+  <kkl-form-input
+    [ngClass]="[checkTotalSum(row) ? 'error' : 'success']"
+    [question]="column.question"
+    [control]="control"
+  ></kkl-form-input>
+</ng-template>
+
+<ng-template
+  #gilatInput
+  let-row="row"
+  let-control="control"
+  let-column="column"
+  let-question="question"
+>
+  <kkl-form-input
+    dir="rtl"
+    [ngClass]="[checkTotalSum(row) ? 'error' : 'success']"
+    [question]="column.question"
+    [control]="control"
+  ></kkl-form-input>
+</ng-template>
+<ng-template
+  #golaniInput
+  let-row="row"
+  let-control="control"
+  let-column="column"
+  let-question="question"
+>
+  <kkl-form-input
+    [ngClass]="[checkTotalSum(row) ? 'error' : 'success']"
+    [question]="column.question"
+    [control]="control"
+  ></kkl-form-input>
+</ng-template>
+
+<ng-template #actions let-row="row" let-column="column" let-panel="panel">
+  <ng-container *ngIf="hasActions">
+    <ng-container *ngIf="events$ | async as event">
+      <div fxLayout="row" fxLayoutAlign="end center" dir="rtl">
+        <kkl-table-actions
+          fxFill
+          [row]="row"
+          [events$]="events$"
+          [options]="{row, column, panel}"
+          [hasDelete]="true"
+          [editable]="row.editable"
+          (edit)="onEditState(row)"
+          (cancel)="onCancelEvent(row, event)"
+          (delete)="onDeleteState({row, event})"
+          (save)="onSaveContact(row, event)"
+        ></kkl-table-actions>
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #actionsHeader let-row="row">
+  <div *ngIf="hasActions">פעולות</div>
+</ng-template>

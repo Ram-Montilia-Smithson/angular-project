@@ -1,0 +1,7 @@
+<mat-form-field [appearance]="disabled ? 'fill' : 'outline'">
+  <mat-label>{{ label }}</mat-label>
+
+  <ngx-mat-file-input [formControl]="control" ngDefaultControl multi>
+    <mat-icon *ngIf="icon" ngxMatFileInputIcon>{{ icon }}</mat-icon>
+  </ngx-mat-file-input>
+</mat-form-field>

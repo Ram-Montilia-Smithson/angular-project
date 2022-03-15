@@ -1,0 +1,32 @@
+<div class="spatial-header">
+  <div class="spatial-header__right">
+    <div class="spatial-header__right-header">
+      <span class="spatial-header__right-header-headline">
+       {{title}}</span
+      >
+      <span class="spatial-header__right-header-year">{{
+        titleObj?.plantingSeason
+      }}</span>
+      <span class="spatial-header__right-header-status">{{
+        titleObj?.status
+      }}</span>
+    </div>
+  </div>
+  <div class="spatial-header__left" *ngIf="isOpend">
+    <button
+      (click)="toggleEditHandler()"
+      class="spatial-header__left-toggle-edit"
+    >
+      עריכה
+    </button>
+    <button
+      class="spatial-header__left-file-transfer"
+      matTooltip="הורדת קובץ לאקסל" (click)="exportExcel()"
+    >
+      <svg-icon
+        src="assets/images/excel-icon.svg"
+        class="excel-icon"
+      ></svg-icon>
+    </button>
+  </div>
+</div>

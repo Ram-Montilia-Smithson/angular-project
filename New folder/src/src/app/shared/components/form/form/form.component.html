@@ -1,0 +1,140 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="group.formGroup">
+  <mat-grid-list
+    [cols]="cols"
+    [rowHeight]="(rowHeight || 9) + 'rem'"
+    [gutterSize]="(gutter || 1) + 'rem'"
+    [dir]="'rtl'"
+  >
+    <ng-container *ngFor="let question of group.questions">
+      <ng-container [ngSwitch]="question.type">
+        <!-- GROUP INPUT SECTION -->
+        <ng-container *ngSwitchCase="'group'">
+          <ng-container *ngFor="let q of question.questions; let first = first">
+            <div
+              fxFill
+              [fxLayoutAlign]="
+                question?.gridProps?.flex?.align || 'center' + ' center'
+              "
+            >
+              <div [fxFlex]="question?.gridProps?.flex?.width || 100">
+                <mat-grid-tile
+                  [colspan]="
+                    q?.gridProps?.fullWidth ? cols : q?.gridProps?.cols || 1
+                  "
+                  [rowspan]="q?.gridProps?.rows || 1"
+                >
+                  <div fxLayout="column" fxFill fxLayoutGap="1rem">
+                    <div fxFlex="1rem">
+                      <kkl-typography
+                        color="primary"
+                        [bold]="600"
+                        *ngIf="question.label && first"
+                        >{{ question.label }}</kkl-typography
+                      >
+                    </div>
+                    <div
+                      [fxLayoutAlign]="
+                        q?.gridProps?.flex?.align || 'center' + ' center'
+                      "
+                    >
+                    <div [fxFlex]="q?.gridProps?.flex?.width || 100">
+                      <kkl-form-input
+                          (selected)="onSelect($event)"
+                          (autocomplete)="onAutocomplete($event)"
+                          (focusoutEvent)="onFocusOut($event)"
+                          (optionSelected)="onOptionSelected($event)"
+                          [control]="
+                            group.formGroup.controls[question.key].controls[
+                              q.key
+                            ]
+                          "
+                          [optionsSlot]="optionsSlot"
+                          [question]="q"
+                        ></kkl-form-input>
+                      </div>
+                    </div>
+                  </div>
+                </mat-grid-tile>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <!-- CUSTOM INPUT SECTION -->
+        <ng-container *ngSwitchCase="'custom'">
+          <mat-grid-tile
+            [colspan]="
+              question?.gridProps?.fullWidth
+                ? cols
+                : question?.gridProps?.cols || 1
+            "
+            [rowspan]="question?.gridProps?.rows || 1"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                slots[question.key];
+                context: {
+                  question: question,
+                  control: group.formGroup.controls[question.key]
+                }
+              "
+            >
+            </ng-container>
+          </mat-grid-tile>
+        </ng-container>
+
+
+        <!-- DEFAULT INPUT -->
+        <ng-container *ngSwitchDefault>
+          <mat-grid-tile
+            [colspan]="
+              question?.gridProps?.fullWidth
+                ? cols
+                : question?.gridProps?.cols || 1
+            "
+            [rowspan]="question?.gridProps?.rows || 1"
+          >
+            <div
+              fxFill
+              [fxLayoutAlign]="
+                question?.gridProps?.flex?.align || 'center' + ' center'
+              "
+            >
+              <div [fxFlex]="question?.gridProps?.flex?.width || 100">
+                <kkl-form-input
+                  (selected)="onSelect($event)"
+                  (autocomplete)="onAutocomplete($event)"
+                  (focusoutEvent)="onFocusOut($event)"
+                  (optionSelected)="onOptionSelected($event)"
+                  [control]="group.formGroup.controls[question.key]"
+                  [question]="question"
+                  [optionsSlot]="optionsSlot"
+                ></kkl-form-input>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="question?.gridProps?.offset"> </mat-grid-tile>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <mat-grid-tile
+      *ngIf="hasButton"
+      [colspan]="group?.gridProps.buttonCols || 1"
+    >
+      <div class="btn-form" fxFlex="100">
+        <ng-container
+          *ngTemplateOutlet="
+            slots?.button;
+            context: {
+              $implicit: group.formGroup.value,
+              $implicit: group.formGroup.disabled
+            }
+          "
+        >
+        </ng-container>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

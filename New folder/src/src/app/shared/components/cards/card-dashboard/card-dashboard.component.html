@@ -1,0 +1,10 @@
+<div class="card" fxLayout="column" fxLayoutAlign="center center" (click)="onCardClick()">
+  <div fxFlex="80">
+    <kkl-icon [size]="card.size" [color]="'primary'" [key]="card.svgUrl"></kkl-icon>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="start center" fxFlex="30">
+    <kkl-typography [size]="1.6" [bold]="600">
+      {{ card.label }}
+    </kkl-typography>
+  </div>
+</div>

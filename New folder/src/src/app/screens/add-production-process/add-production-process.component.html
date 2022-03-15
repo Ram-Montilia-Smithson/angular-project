@@ -1,0 +1,78 @@
+<div class="create-production">
+    <div class="container">
+        <p class="create-production__form-headline">הוספת תכנית ייצור</p>
+        <form [formGroup]="addProductionProcessForm"  class="create-production__form" #createForm="ngForm">
+            <div class="create-production__form-group" disableOptionCentering="false">
+                <label class="create-production__form-group-label">סוג תוכנית</label>
+                <mat-form-field class="form-control">
+                    <mat-select formControlName="sugeyTochnit" #planInput class="create-production__form-group-select"
+                        (selectionChange)='planTypeOnChange(planInput.value)'  [ngClass]="{ 'field-error': !addProductionProcessForm.get('sugeyTochnit').valid }">
+                        <mat-option   value="{{ option.code }}" *ngFor="let option of planTypeOptions; let i = index">
+                            {{ option.name }}
+                            <span class="create-production__select-option-text"></span>
+                        </mat-option>
+                    </mat-select>
+                    <span class="error-text" *ngIf="addProductionProcessForm.get('sugeyTochnit').hasError('required')">הכנס סוג תוכנית</span>
+                </mat-form-field>
+            </div>
+            <div class="create-production__form-group" disableOptionCentering="false" *ngIf='!switchInputs'>
+                <label class="create-production__form-group-label">משתלה</label>
+                <mat-form-field class="form-control">
+                    <mat-select #select formControlName="mashtelot" class="create-production__form-group-select"  [ngClass]="{ 'field-error': !addProductionProcessForm.get('mashtelot').valid }">
+                        <mat-option value="{{ option.code }}" *ngFor="let option of gardeningOptions">
+                            <span class="create-production__select-option">
+                                {{ option.name }}
+                                <span class="create-production__select-option-text"></span>
+                            </span>
+                        </mat-option>
+                    </mat-select>
+                    <span  class="error-text" *ngIf="addProductionProcessForm.get('mashtelot').hasError('required')">הכנס משתלה</span>
+                </mat-form-field>
+            </div>
+            <div class="create-production__form-group" disableOptionCentering="false">
+                <label class="create-production__form-group-label">עונת נטיעה</label>
+                <mat-form-field class="form-control">
+                    <mat-select #select formControlName="onotNetia" [ngClass]="{ 'field-error': !addProductionProcessForm.get('onotNetia').valid }"  class="create-production__form-group-select">
+                        <mat-option value="{{ option.code }}" *ngFor="let option of seasonOptions">
+                            <span class="create-production__form-season-option">
+                                <span>{{ option.name }} &nbsp;</span>
+                                <span class="create-production__form-season-option-text" *ngIf="option.isShmita">שנה
+                                    לפני שנת
+                                    שמיטה</span>
+                            </span>
+                        </mat-option>
+                    </mat-select>
+                    <span class="error-text" *ngIf="addProductionProcessForm.get('onotNetia').hasError('required')">הכנס עונת נטיעה</span>
+                </mat-form-field>
+            </div>
+            <div class="create-production__form-field" *ngIf='!switchInputs'>
+                <div class="create-production__form-field-label">הערה</div>
+                <mat-form-field class="form-control" id="input" class="create-production__form-field-input">
+                    <input [ngClass]="{ 'field-error': !addProductionProcessForm.get('command').valid }" formControlName="command" matInput type="text" />
+                    <span class="error-text" *ngIf="addProductionProcessForm.get('command').hasError('')">הכנס הערה</span>
+                </mat-form-field>
+            </div>
+            <div class="create-production__form-field" *ngIf='switchInputs'>
+                <div class="create-production__form-field-label">טען קובץ</div>
+                <div class="create-production__form-field-input file-input form-control">
+                        <div class="div-custom-input">
+                          <input  type="text" class="custom-input" [ngClass]="{ 'field-error': !addProductionProcessForm.get('excelPage').valid }">
+                          <span class="custom-span">Browse</span>
+                          <kkl-icon key=''> </kkl-icon>
+                        <div class="upload-input">
+                          <span class="fileUpload">
+                              <span class="upl" id="upload">{{pageExcelName}}</span>
+                              <input formControlName="excelPage" accept=".xlsx" type="file" class="upload up" id="up" (change)="changeExcelFile($event)"/>
+                            </span>
+                         </div>
+                         </div>
+                </div>
+                <span class="error-text1" *ngIf="addProductionProcessForm.get('excelPage').hasError('required')">הכנס קובץ אקסל</span>   
+
+            </div> 
+        </form>
+        <button (click)="saveProductionProcess($event)" class="create-production__link">
+            הוסף
+        </button>
+    </div>
+</div>

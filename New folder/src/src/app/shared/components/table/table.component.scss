@@ -1,0 +1,115 @@
+@use "variables" as main;
+
+::ng-deep mat-table {
+  width: 100%;
+  height: 100%;
+  background-color: inherit !important;
+
+  .mat-checkbox .mat-checkbox-frame {
+    border: 0.5px solid main.color(disable);
+  }
+
+  button {
+    line-height: 3rem !important;
+  }
+
+  .select {
+    flex: 0.5;
+  }
+
+  .actions-header {
+    justify-content: flex-end;
+  }
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+mat-cell {
+  &.center {
+    justify-content: center;
+  }
+
+}
+
+.disabled {
+  opacity: 30%;
+}
+mat-header-row.accent {
+  border-bottom: main.color(accent) solid 3px;
+
+  mat-header-cell {
+    align-items: flex-end;
+    padding-bottom: main.spacing(1);
+    box-sizing: border-box;
+    font-weight: 700; 
+
+    &.expand {
+      padding-left: 0px;
+      padding-bottom: 0px;
+      padding-right: 0px;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+  }
+}
+
+mat-header-row.primary {
+  background-color: #f2f2f2;
+  background-clip: content-box;
+  min-height: 3rem;
+  border-radius: 1rem;
+
+  button {
+    line-height: 2rem !important;
+  }
+}
+
+// style for row
+mat-row {
+
+  &.default {
+    height: 7rem;
+  }
+
+  &.form {
+    height: 8rem;
+  }
+
+  &.hide {
+    height: 0rem;
+    min-height: 0rem;
+  }
+
+  &.accordion {
+    cursor: pointer;
+  }
+}
+
+.cell-input {
+  width: 85%;
+  height: 5rem;
+
+  app-column-form {
+    width: inherit;
+  }
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: main.color(primary) !important;
+}
+
+button.action {
+  cursor: initial;
+}
+
+::ng-deep div.mat-sort-header-arrow {
+  opacity: 0;
+  display: none;
+}
+
+.color{
+  background-color: rgb(230, 72, 72);
+}

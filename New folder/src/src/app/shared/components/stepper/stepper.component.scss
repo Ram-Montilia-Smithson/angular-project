@@ -1,0 +1,30 @@
+@use "variables" as main;
+
+
+.divider-step {
+  height: 0.6rem;
+  background-color: #ececec;
+  flex: 0.1;
+  transform: translateY(-2rem);
+}
+
+.divider-status {
+  flex: 0.1;
+}
+
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+
+/* Mobile  ----------- */
+@media screen and (max-width: 600px) {
+  .divider-step {
+    background-color: #A8A8A8;
+    transform: translateY(0);
+    flex: 1;
+    height: 0.2rem;
+  }
+
+
+}

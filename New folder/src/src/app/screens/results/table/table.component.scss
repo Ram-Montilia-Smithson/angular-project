@@ -1,0 +1,77 @@
+table {
+  margin: 0 auto;
+  width:96%; 
+  flex: 1;
+  box-shadow: none;
+  // text-align: center;
+}
+
+.table__link{
+  color: black;
+  text-decoration: none;
+}
+.mat-header-cell {
+  
+font-weight: bold;
+  text-align: center;
+}
+
+.cell-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  &__icon {
+    padding-left:7px;
+    padding-top: 7px;
+  }
+
+  &__text {
+    justify-self: center;
+    align-self: center;
+    color: #707070;
+    font-size: 15px;
+  }
+}
+
+
+.cell-content{
+  max-width: fit-content;
+  
+  // padding-right: 30px !important;
+}
+
+.mat-cell{
+  margin-right: 35px;
+  max-width: fit-content;
+  color: #a2a2a2;
+}
+
+.mat-row{
+  max-width: fit-content;
+height: 70px;
+text-align: right;
+
+}
+
+ ::ng-deep .mat-row:last-child{
+  padding-bottom: 50px !important;
+}
+
+.mat-header-row{
+  padding-right: 60px !important;
+
+  background: linear-gradient(
+    0deg,
+    #f9f9f9 0%,
+    #fafafa 100%
+  );
+}
+
+::ng-deep .pagination{
+  position: relative;
+  z-index: 100;
+  background-color: transparent !important;
+}
+::ng-deep .deeppurple-amber .mat-elevation-z8{
+  box-shadow: none !important;
+} 

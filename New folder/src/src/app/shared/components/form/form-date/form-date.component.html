@@ -1,0 +1,19 @@
+<mat-form-field appearance="outline" class="kkl-datepicker">
+  <mat-label>{{placeHolder}}</mat-label>
+
+  <input *ngIf='!range' matInput [matDatepicker]="dp" [placeholder]="placeHolder" (click)="dp.open()"
+    (dateChange)="dateChange($event)" [formControl]="control" autocomplete="off"  />
+  <mat-datepicker-toggle matSuffix [for]="dp" *ngIf='!range'></mat-datepicker-toggle>
+  <mat-datepicker #dp></mat-datepicker>
+
+  <mat-date-range-input *ngIf='range' [formGroup]="rangeForm" [rangePicker]="picker" (click)="picker.open()">
+    <input matStartDate formControlName="start" 
+     placeholder="מתאריך" (dateChange)="rangeDateChange($event,'start')">
+    <input matEndDate formControlName="end" placeholder="עד תאריך" (dateChange)="rangeDateChange($event,'end')">
+  </mat-date-range-input>
+
+  <mat-datepicker-toggle matSuffix [for]="picker" *ngIf='range'></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+
+
+</mat-form-field>

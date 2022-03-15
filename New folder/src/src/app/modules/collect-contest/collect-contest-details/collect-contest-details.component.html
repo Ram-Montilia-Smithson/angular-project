@@ -1,0 +1,70 @@
+<div class="main">
+
+    <div class="title">
+        <h1>נתונים כלליים</h1>
+    </div>
+
+    <div [ngClass]="isDrawerOpen ? 'containerOpen' :'container'">
+        <div class="box" *ngFor="let data of dataArr">
+            <div class="small-box">
+                <div class="subject-title">{{data.title}}</div>
+                <div class="data">{{data.data}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div  [ngClass]="checkMobile ? 'select-container-mobile':'select-container'" >
+
+        <div class="header">
+            <div class="title">
+                <h4>מנה 1</h4>
+                <button mat-icon-button (click)="openContainer()">
+                    <kkl-icon [size]="1.8" [key]="'dropdown'" [color]="'primary'"></kkl-icon>
+                </button>
+            </div>
+            <div class="check-box">
+                <mat-checkbox [color]="'primary'" #tog [checked]="openAll" (change)="toggleOpenAll(tog.checked)"> </mat-checkbox>
+                <label>
+                    <h3>פתח הכל</h3>
+                </label>
+            </div>
+        </div>
+
+        <div [ngClass]="isDrawerOpen ? 'containerOpen' :'container'">
+            <ng-container *ngIf="isOpen">
+                <div class="box" *ngFor="let data of dataArr2">
+                    <div class="small-box">
+                        <div class="subject-title">{{data.title}}</div>
+                        <div class="data">{{data.data}}</div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+
+    <div [ngClass]="checkMobile ? 'select-container-mobile':'select-container'">
+
+        <div class="header">
+            <div class="title">
+                <h4>מנה 2</h4>
+                <button mat-icon-button (click)="openContainer2()">
+                    <kkl-icon [size]="1.8"  [key]="'dropdown'" [color]="'primary'"></kkl-icon>
+                </button>
+            </div>
+        </div>
+
+        <div [ngClass]="isDrawerOpen ? 'containerOpen' :'container'">
+            <ng-container *ngIf="isOpen2">
+                <div class="box" *ngFor="let data of dataArr3">
+                    <div class="small-box">
+                        <div class="subject-title">{{data.title}}</div>
+                        <div class="data">{{data.data}}</div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+
+</div>

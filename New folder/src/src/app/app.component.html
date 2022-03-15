@@ -1,0 +1,5 @@
+ <!-- <router-outlet ></router-outlet>  -->
+ <!-- <app-main *ngIf="urlAdress !== '/login'"> </app-main>
+<app-login *ngIf="urlAdress === '/login'"></app-login>  -->
+<app-main *ngIf="(urlAdress !== '/login'  && found)"> </app-main>
+<app-login *ngIf="(urlAdress === '/login'  || !found)"></app-login>  

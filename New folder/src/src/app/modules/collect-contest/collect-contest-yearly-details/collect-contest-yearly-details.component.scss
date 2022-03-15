@@ -1,0 +1,144 @@
+@use "variables" as main;
+
+.main{
+    padding: 4rem;
+
+    .title{
+        h2{
+            font-weight: bold;
+            
+        }
+    }
+
+    .container{
+        width: 100%;
+        display: grid;
+        padding-top: 4rem;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 4rem;
+        grid-row-gap: 4rem;
+
+        .box{
+            .small-box{
+                padding-bottom: 4rem;
+                
+                .subject-title{
+                    background: #F3F3F3;
+                    font-size: 1.2em;
+                    padding: 0.5rem 0.6rem 0.5rem 0.6rem;
+                    font-weight: bold;
+                    color: black;
+                    width: fit-content;
+                }
+                
+                .data{
+                    font-size: 1.2em;
+                    padding-top: 0.5rem;
+                }
+            }
+       }
+    }
+
+    .containerOpen{
+        width: 100%;
+        display: grid;
+        padding-top: 4rem;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 4rem;
+        grid-row-gap: 4rem;
+
+        .box{
+            .small-box{
+                padding-bottom: 4rem;
+                
+                .subject-title{
+                    background: #F3F3F3;
+                    font-size: 1.2em;
+                    padding: 0.5rem 0.6rem 0.5rem 0.6rem;
+                    font-weight: bold;
+                    color: black;
+                    width: fit-content;
+                }
+                
+                .data{
+                    font-size: 1.2em;
+                    padding-top: 0.5rem;
+                }
+            }
+       }
+    }
+
+    .select-container{
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 0.5px solid  #EDFAF2;
+            height: 4rem;
+
+            .title{
+                padding: 1rem;
+                border-bottom: 2px solid main.color(primary);
+                display: flex;
+   
+                button{
+                    padding: 1rem 1rem 2.5rem 1rem;
+                }
+
+                h4{
+                    font-size: 2em;
+                    color: main.color(primary);
+                    font-weight: bold;
+                }
+            }
+
+            .check-box{
+                font-size: 3.5em;
+                padding: 1rem;
+                display: flex;
+            }
+        }
+    }
+    .select-container-mobile{
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 0.5px solid  #EDFAF2;
+            height: 4rem;
+
+            .title{
+                padding: 1rem;
+                border-bottom: 1px solid main.color(primary);
+                display: flex;
+                
+                button{
+                    padding: 1rem 1rem 2.5rem 1rem;
+                }
+            
+                h4{
+                    font-size: 1.5em;
+                    color: main.color(primary);
+                    font-weight: bold;
+                }
+            }
+
+            .check-box{
+                font-size: 1em;
+                padding: 1rem;
+                display: flex;
+             
+                h3{
+                    font-size: 1.2em;
+                }
+                mat-checkbox {
+                    padding-top: 0.5rem;
+                    ::ng-deep .mat-checkbox-inner-container {
+                      width: 1.5rem;
+                      height: 1.5rem;
+                      }
+                }
+            }
+        }
+    }
+}

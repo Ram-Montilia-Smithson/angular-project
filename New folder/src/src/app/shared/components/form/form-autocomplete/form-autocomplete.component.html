@@ -1,0 +1,53 @@
+<mat-form-field [appearance]="disabled ? 'fill' : 'outline'">
+  <mat-label>{{ question.label }}</mat-label>
+
+  <input
+    type="text"
+    matInput
+    [formControl]="control"
+    [matAutocomplete]="auto"
+    #autoCompleteInput
+    (input)="search(autoCompleteInput.value)"
+  />
+
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"
+    [panelWidth]="panelWidthAuto ? 'auto' : null">
+    <ng-container *ngIf="!multiSelect">
+      <mat-option class="autocomplete-option" [disabled]="option.disabled"
+        *ngFor="let option of (options$ | async) || question.options" [value]="option.value">
+        <ng-container *ngIf="!optionsSlot; else slotBlock">
+          {{ option.label }}
+        </ng-container>
+        <ng-template #slotBlock>
+          <ng-container *ngTemplateOutlet="
+              optionsSlot[question.key];
+              context: { $implicit: this.option }
+            "></ng-container>
+        </ng-template>
+      </mat-option>
+    </ng-container>
+
+    <ng-container *ngIf="multiSelect">
+      <mat-selection-list [multiple]="true" #selectOptions (selectionChange)="onSelectionChange(selectOptions)">
+        <mat-list-option class="autocomplete-option" [disabled]="option.disabled"
+          *ngFor="let option of (options$ | async) || question.options" [value]="option.value">
+          <ng-container *ngIf="!optionsSlot">
+            {{ option.label }}
+          </ng-container>
+          <ng-container *ngIf="optionsSlot">
+            <ng-container *ngTemplateOutlet="
+                optionsSlot[question.key];
+                context: { option: this.option }
+              "></ng-container>
+          </ng-container>
+        </mat-list-option>
+      </mat-selection-list>
+      <!-- empty mat-option for display mat-list -->
+      <mat-option [style.display]="'none'"></mat-option>
+    </ng-container>
+  </mat-autocomplete>
+
+  <kkl-icon *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon" [size]="2.5"></kkl-icon>
+</mat-form-field>
+
+<ng-container *ngIf="autocomplete$ | async"></ng-container>

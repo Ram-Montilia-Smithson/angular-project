@@ -1,0 +1,21 @@
+@use "_variables" as main;
+
+
+
+.header-text {
+  box-sizing: border-box;
+  &::after {
+    content: "•";
+    padding: 3px;
+    font-size: 20px;
+    color: main.$accent ;
+  }
+}
+
+// .edit,
+// .download {
+//   box-shadow: main.$box-shadow-gray;
+//   padding: 10px;
+//   cursor: pointer;
+//   border-radius: 5px;
+// }

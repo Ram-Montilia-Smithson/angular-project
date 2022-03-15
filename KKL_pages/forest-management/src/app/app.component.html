@@ -1,0 +1,15 @@
+<div dir="rtl">
+
+  <kkl-typography [weight]="600" [size]="1">נתונים מתכנית שנתית</kkl-typography>
+  <div dir="ltr" *ngIf="multi" title fxLayout="row" fxLayoutGap="1rem">
+    <kkl-typography [size]="1">פתח הכל</kkl-typography>
+    <mat-checkbox [color]="'primary'" #tog [checked]="openAll" (change)="toggleOpenAll(tog.checked)"> </mat-checkbox>
+  </div>
+  <mat-accordion multi="multi">
+    <kkl-expand-panel *ngFor="let panel of panels" (opened)="onPanelOpen(panel.id)" (closed)="onPanelClosed(panel.id)" [expanded]="panel.expanded">
+      <kkl-typography class="title" title [color]="'accent'" [weight]="600" [size]="1">{{panel.title}}</kkl-typography>
+      <kkl-typography [size]="1" content>{{panel.content}}</kkl-typography>
+    </kkl-expand-panel>
+  </mat-accordion>
+
+</div>

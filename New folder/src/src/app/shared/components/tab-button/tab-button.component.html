@@ -1,0 +1,20 @@
+<ng-container>
+  <button
+    mat-flat-button
+    dir="rtl"
+    (click)="onClick();$event.stopPropagation()"
+    [ngClass]="{ active: (active$ | async) }"
+    [color]="(active$ | async) && 'primary'"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between center" appUnderline>
+      <kkl-typography [color]="(active$ | async) ? 'paper' : 'primary'">
+        {{ label || row.item[columnDef] }}
+      </kkl-typography>
+      <kkl-icon
+        [ngClass]="{ open: active$ | async }"
+        [color]="(active$ | async) ? 'paper' : 'primary'"
+        key="expand_more"
+      ></kkl-icon>
+    </div>
+  </button>
+</ng-container>

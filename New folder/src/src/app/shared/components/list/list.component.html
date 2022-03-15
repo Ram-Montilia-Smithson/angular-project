@@ -1,0 +1,28 @@
+<div fxLayout="row" fxLayoutAlign="start center"  fxLayoutGap="1.5rem">
+  <ng-container *ngFor="let item of list$ | async">
+    <ng-container *ngIf="item.value">
+      <ng-container [ngSwitch]="item.type">
+        <kkl-icon
+          mat-list-icon
+          *ngIf="item.svgUrl"
+          [key]="item.svgUrl"
+          [color]="icon.color"
+          [size]="icon.size"
+        >
+        </kkl-icon>
+        <ng-container *ngSwitchDefault>
+          <kkl-list-item [item]="item"></kkl-list-item>
+        </ng-container>
+        <ng-container *ngSwitchCase="'custom'">
+          <ng-container
+            *ngTemplateOutlet="
+              slots[item.key];
+              context: { $implicit: this.item }
+            "
+          >
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

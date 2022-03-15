@@ -1,0 +1,19 @@
+<div fxLayout="row" dir="rtl" fxLayoutAlign="center center" fxFill>
+  <div
+    fxFlex="80"
+    class="container"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    dir="rtl"
+  >
+    <div fxFlex="15rem" fxLayout="row" fxFill fxLayoutAlign="start end">
+      <kkl-typography [bold]="600" [size]="3.4">
+        {{ title }}
+      </kkl-typography>
+    </div>
+
+    <div fxFlex="18rem" class="form-container">
+      <ng-content select="[form]"></ng-content>
+    </div>
+  </div>
+</div>

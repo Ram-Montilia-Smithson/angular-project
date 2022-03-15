@@ -1,0 +1,34 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxLayoutGap="1.5rem">
+      <div fxLayout="row">
+        <kkl-typography
+          *ngFor="let item of headerItems$ | async; let last = last"
+          [size]="item.size"
+          [color]="item.color"
+          [bold]='item.bold'
+          class="header-text"
+          [ngClass]="{ 'header-text': !last }"
+        >
+          {{ item.text }}
+        </kkl-typography>
+      </div>
+      <div>
+        <kkl-typography *ngIf="formOpen"> {{ comment$ | async }}</kkl-typography>
+      </div>
+    </div>
+  
+    <div fxLayout="row" fxLayoutGap="3rem">
+        <ng-content select="[left]"></ng-content> 
+      <!-- <div class="edit">
+        <kkl-typography [size]="'1.8'" [color]="'primary'">עריכה</kkl-typography>
+      </div>
+      <kkl-icon
+        matTooltip="הורדת קובץ אקסל"
+        (click)="downloadExcel()"
+        class="download"
+        [key]="'excal'"
+        [color]="'primary'"
+      ></kkl-icon> -->
+    </div>
+  </div>
+  

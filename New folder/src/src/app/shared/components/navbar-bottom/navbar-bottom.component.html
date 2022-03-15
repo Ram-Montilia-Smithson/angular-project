@@ -1,0 +1,44 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxFill dir="rtl">
+  <div fxFlex="10">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <button
+        class="prev mat-elevation-z1"
+        mat-icon-button
+        (click)="onPrevious()"
+      >
+        <kkl-icon type="mat" color='primary' [size]='3' key="chevron_right"></kkl-icon>
+      </button>
+    </div>
+  </div>
+  <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+    <kkl-icon type="svg" [size]="20" [key]="bottomIcon"></kkl-icon>
+  </div>
+  <div
+    fxFlex="10"
+    fxLayout="row"
+    [fxLayoutAlign]="hasSave ? 'space-between center' : 'end center'"
+  >
+    <button
+      *ngIf="hasSave"
+      mat-raised-button
+      color="primary"
+      (click)="onSave()"
+    >
+      <kkl-typography color="paper"> שמירה </kkl-typography>
+    </button>
+    <ng-container *ngIf="showNext$ | async as next">
+      <button
+        *ngIf="next"
+        mat-raised-button
+        [disabled]="!next" 
+        (click)="onNext()" 
+        class="next-btn"
+      >
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <kkl-typography color="paper"> {{ text || "המשך" }} </kkl-typography>
+
+        </div>
+      </button>
+    </ng-container>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,21 @@
+<ng-container *ngIf="filters$ | async as filters">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <mat-chip-list>
+      <mat-chip
+        appBorder
+        *ngFor="let filter of filters"
+        [selectable]="true"
+        [removable]="true"
+        (removed)="onFilterRemove(filter)"
+      >
+        {{ filter.label | format : filter.format }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <div *ngIf="filters.length !== 0">
+      <button mat-button (click)="onClearFilters()">
+        <kkl-typography appUnderline> בטל סינונים </kkl-typography>
+      </button>
+    </div>
+  </div>
+</ng-container>

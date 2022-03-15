@@ -1,0 +1,22 @@
+.details {
+  margin-top: 3.8rem;
+}
+.main {  
+  padding-top: 35px;
+
+  &__item { 
+    margin-bottom: 3rem;
+  } 
+}
+
+.header {
+}
+
+@media screen and (max-width:1024px) {
+
+
+  .main {  
+    padding-top: 25px;
+  }
+  
+}

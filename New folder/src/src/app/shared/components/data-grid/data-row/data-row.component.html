@@ -1,0 +1,16 @@
+<mat-grid-list [cols]="cols || 1" rowHeight="5rem">
+  <mat-grid-tile >
+    <div fxFill fxLayout="row" fxFill fxLayoutAlign="start center">
+      <ng-container [ngSwitch]="item.type">
+        <ng-container *ngSwitchCase="'custom'">
+          <ng-container
+            *ngTemplateOutlet="slots?.custom; context: { item: this.item }"
+          ></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <kkl-data-cell [item]="item"></kkl-data-cell>
+        </ng-container>
+      </ng-container>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

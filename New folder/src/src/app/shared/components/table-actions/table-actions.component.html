@@ -1,0 +1,82 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  dir="rtl"
+  fxLayoutGap="1rem"
+  fxFill
+>
+  <!-- slots buttons -->
+  <ng-container>
+    <ng-template
+      *ngTemplateOutlet="
+        startSlot;
+        context: {
+          $implicit: options,
+          editable: this.editable,
+          row: this.row
+        }
+      "
+    ></ng-template>
+  </ng-container>
+<ng-container *ngIf='hasEdit'>
+  <ng-container *ngIf="editButton$ | async as editButton">
+    <!-- edit button -->
+    <ng-container *ngIf="!editButton.show; else saveBlock">
+      <button
+        mat-icon-button
+        (click)="onEdit()"
+        matTooltip="ערוך"
+        [disabled]="editButton.disabled"
+      >
+        <ng-container *ngIf="!editButton.disabled; else elseBlock">
+          <kkl-icon key="edit"></kkl-icon>
+        </ng-container>
+        <ng-template #elseBlock>
+          <kkl-icon key="edit_off"></kkl-icon>
+        </ng-template>
+      </button>
+    </ng-container>
+ 
+
+  
+    <!-- save button -->
+    <ng-template #saveBlock>
+      <button
+        mat-raised-button
+        class="kkl-save-button"
+        (click)="onSave('save')"
+        appBorder
+        matTooltip="שמור"
+      >
+        <kkl-typography color="text"> שמור </kkl-typography>
+      </button>
+      <button
+        matTooltip="בטל"
+        mat-icon-button
+        (click)="onCancel()"
+        matTooltip="בטל"
+      >
+        <kkl-icon key="cancel"></kkl-icon>
+      </button>
+    </ng-template>
+  </ng-container>
+</ng-container>
+  <!-- delete button -->
+  <ng-container *ngIf="showDelete$ | async">
+    <button mat-icon-button (click)="onDelete()" matTooltip="מחק">
+      <kkl-icon key="delete"></kkl-icon>
+    </button>
+  </ng-container>
+
+  <!-- slots buttons -->
+  <ng-container>
+    <ng-template
+      *ngTemplateOutlet="
+        endSlot;
+        context: {
+          $implicit: options
+        }
+      "
+    ></ng-template>
+  </ng-container>
+</div>

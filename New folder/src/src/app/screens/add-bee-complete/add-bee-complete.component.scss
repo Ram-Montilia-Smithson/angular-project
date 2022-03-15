@@ -1,0 +1,12 @@
+.add-bee-complete{
+    width: 100%;
+    height: calc(100% - 90px); 
+    padding: 0 100px;
+    background-color: #ffffff;
+   & ::ng-deep .treeTypes{ 
+        width: calc(100% - 200px);
+    }
+    & ::ng-deep thead tr{
+        text-align: right;
+    }
+}

@@ -1,0 +1,49 @@
+@use "variables" as main;
+
+::ng-deep mat-expansion-panel {
+  margin-bottom: main.spacing(2) !important;
+
+  &.table {
+    .mat-expansion-panel-content,
+    .mat-expansion-panel-body {
+      background-color: main.color(table);
+      // padding: 0px !important;
+    }
+    background-color: main.color(table);
+  }
+
+  &.tour {
+    border-bottom: 1px solid color(primary);
+  }
+
+  &.form {
+    border-radius: 0px !important;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+  }
+
+  &.search {
+    border-radius: 0px !important;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+  }
+}
+
+::ng-deep mat-expansion-panel-header {
+
+
+  // &:hover {
+  //   background-color: main.color(paper) !important;
+  // }
+
+  background-color: inherit !important;
+}
+
+.content {
+  font-size: 16px !important;
+}
+
+// override indicator color
+::ng-deep span.mat-expansion-indicator::after {
+  color: main.color(primary) !important;
+}

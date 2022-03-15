@@ -1,0 +1,8 @@
+<div class="pagination" fxLayout="row" fxLayoutAlign="center center">
+    <pagination-controls
+      [previousLabel]="labels.previousLabel"
+      [nextLabel]="labels.nextLabel"
+      (pageChange)="onPageChange($event)"
+      [maxSize]="maxSize || 5"
+    ></pagination-controls>
+  </div>

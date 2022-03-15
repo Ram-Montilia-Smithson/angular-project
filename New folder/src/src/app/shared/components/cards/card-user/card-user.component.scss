@@ -1,0 +1,20 @@
+@use "variables" as main;
+
+.avatar {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+div.divider-container {
+  height: 100%;
+  width: 80%;
+}
+
+mat-card-title {
+  font-size: 1.6rem !important;
+}
+
+mat-card-subtitle {
+  color: main.color(primary) !important;
+  font-size: 1.4rem !important;
+}

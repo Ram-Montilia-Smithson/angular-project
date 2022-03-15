@@ -1,0 +1,68 @@
+<div class="create-production">
+  <div class="container">
+  <p class="create-production__form-headline">יחידות עבודה לדילול</p>
+
+    <form class="create-production__form" #createForm="ngForm">
+      <div class="create-production__form-group" disableOptionCentering="false">
+        <label class="create-production__form-group-label">עונת נטיעה</label>
+        <mat-form-field>
+          <mat-select #select class="create-production__form-group-select">
+            <mat-option
+              value="{{ option.value }}"
+              *ngFor="let option of seasonOptions"
+            >
+              <span class="create-production__form-season-option">
+                <span>{{ option.text }} &nbsp;</span>
+                <span
+                  class="create-production__form-season-option-text"
+                  *ngIf="option.isShmita"
+                  >שנה לפני שנת שמיטה</span
+                >
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="create-production__form-group" disableOptionCentering="false">
+        <label class="create-production__form-group-label">משתלה</label>
+        <mat-form-field>
+          <mat-select #select class="create-production__form-group-select">
+            <mat-option
+              value="{{ option.value }}"
+              *ngFor="let option of gardeningOptions"
+            >
+              <span class="create-production__select-option">
+                {{ option.text }}
+                <span class="create-production__select-option-text"></span>
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="create-production__form-group" disableOptionCentering="false">
+        <label class="create-production__form-group-label">סוג תוכנית</label>
+        <mat-form-field>
+          <mat-select #select class="create-production__form-group-select">
+            <mat-option
+              value="{{ option.value }}"
+              *ngFor="let option of planTypeOptions"
+            >
+              {{ option.text }}
+              <span class="create-production__select-option-text"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="create-production__form-field">
+        <div class="create-production__form-field-label">מספר יחידות עבודה</div>
+        <mat-form-field id="input" class="create-production__form-field-input">
+          <input matInput type="text" />
+        </mat-form-field>
+      </div>
+    </form>
+    <a routerLink='/forestry/spatial-production-program' class="create-production__link">
+        הוסף
+    </a>
+  </div>
+</div>

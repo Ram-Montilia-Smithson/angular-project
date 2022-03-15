@@ -1,0 +1,109 @@
+@use "variables" as main;
+
+.sidenav-container {
+  height: main.$content-height;
+  background-color: main.color(paper);
+}
+
+mat-sidenav-content {
+  background-color: main.color(paper);
+  margin-left: 0 !important;
+}
+
+div.content {
+  margin-bottom: main.$bottomBar-height;
+}
+
+.sidenav-drawer {
+  width: 32rem;
+  z-index: -1;
+}
+
+.sidenav-drawer {
+  // width: 50%;
+  z-index: -1;
+}
+
+div.stepper-container {
+  background: linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%) 0% 0%;
+
+  mat-toolbar {
+    flex: 1;
+    background-color: transparent;
+  }
+
+  .stepper {
+    flex: 1;
+    // padding-top: main.spacing(2);
+    box-sizing: border-box;
+  }
+}
+
+// style button of side menu
+button.mat-fab {
+  background-color: main.color(paper);
+  width: 7rem;
+  height: 7rem;
+
+  kkl-typography {
+    text-align: center;
+    line-height: 1rem;
+  }
+
+  kkl-icon {
+    transform: translateY(-0.4rem);
+  }
+}
+
+::ng-deep span.mat-badge-content.mat-badge-active {
+  color: main.color(paper);
+  transform: translateY(1rem);
+}
+
+::ng-deep .open {
+  span.mat-badge-content.mat-badge-active {
+    background-color: main.color(text);
+  }
+}
+
+// style bottom navbar
+.bottom-navbar {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  height: main.$bottomBar-height;
+  z-index: 100;
+  overflow: hidden;
+  & * {
+    overflow: hidden;
+  }
+}
+
+//
+
+.example-container {
+  height: 500px;
+}
+
+.end-drawer-button {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5rem;
+  background-color: #f9f8f6;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.mat-sidenav-container {
+  width: 100%;
+}
+
+.end-drawer-btn {
+  // border: 1px solid main.$primary;
+  // border-radius: 100px;
+  position: fixed;
+  bottom: calc(main.$bottomBar-height + 3rem);
+  left: 3rem;
+}

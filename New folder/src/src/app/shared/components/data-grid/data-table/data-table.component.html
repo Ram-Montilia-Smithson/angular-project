@@ -1,0 +1,52 @@
+<div fxLayout="row" [dir]="'rtl'">
+  <ng-container *ngIf="columns$ | async as columns">
+    <div fxFlex="27" fxLayout="column" *ngIf="columns.length > 0">
+      <mat-grid-list cols="1" rowHeight="5rem">
+        <mat-grid-tile *ngFor="let column of columns">
+          <div fxFill fxLayout="row" fxLayoutAlign="start center">
+            <ng-container *ngIf="column.type !== 'custom'; else elseBlock">
+              <kkl-data-cell
+                [label]="column.label"
+                [value]="column.value"
+                isUnderline="true"
+              ></kkl-data-cell>
+            </ng-container>
+
+            <ng-template #elseBlock>
+              <ng-container
+                *ngTemplateOutlet="
+                  slots?.column;
+                  context: { $implicit: this.column }
+                "
+              ></ng-container>
+            </ng-template>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </ng-container>
+
+  <div fxLayout="row" fxFlex>
+    <ng-container *ngIf="rows$ | async as rows">
+      <mat-grid-list [cols]="cols || 1" rowHeight="5rem">
+        <mat-grid-tile *ngFor="let item of rows">
+          <div fxFill fxLayout="row" fxFill fxLayoutAlign="start center">
+            <ng-container [ngSwitch]="item.type">
+              <ng-container *ngSwitchCase="'custom'">
+                <ng-container
+                  *ngTemplateOutlet="
+                    slots[item.key];
+                    context: { $implicit: this.item }
+                  "
+                ></ng-container>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <kkl-data-cell [item]="item"></kkl-data-cell>
+              </ng-container>
+            </ng-container>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </ng-container>
+  </div>
+</div>

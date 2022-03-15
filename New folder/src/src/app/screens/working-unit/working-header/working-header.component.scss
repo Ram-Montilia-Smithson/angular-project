@@ -1,0 +1,58 @@
+@import "../../../../styles.scss";
+
+.working-header {
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  background: linear-gradient(
+    0deg,
+    rgba(249, 249, 249, 1) 0%,
+    rgba(254, 254, 254, 1) 100%
+  );
+  &__right {
+    padding-right: 10px;
+    margin-left: auto;
+    &-header {
+      font-size: 34px;
+    }
+    &-text-group {
+      padding-left: 20px;
+
+      & svg-icon * {
+        height: 18px;
+        width: 25px;
+        fill: $--green-color-bright;
+      }
+    }
+  }
+
+  &__left {
+    margin-left: auto;
+    padding-right: 5px;
+    border-right: 1px solid #E4E4E4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    &-text-group {
+      display: flex;
+      font-size: 14px;
+      & svg-icon {
+        align-self: center;
+        padding-left: 20px;
+        height: 18px;
+        width: 25px;
+      }
+      & svg-icon * {
+        height: 18px;
+        width: 25px;
+        fill: $--green-color-bright;
+      }
+      &-text{
+        align-self: center;
+      }
+    }
+  }
+}

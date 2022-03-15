@@ -1,0 +1,49 @@
+@use "_variables" as main;
+
+.location {
+  // height: calc(100% - main.$bottomBar-height);
+  height: calc(100% - main.$bottomBar-height);
+  margin-top: 5.8rem;
+  text-align: center;
+}
+
+.main {
+  padding-top: 35px;
+  &__item {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+hr {
+  height: calc(90% - main.$bottomBar-height);
+  width: 1px;
+  text-decoration: none;
+  border: none;
+  background-color: #f1f1f1;
+}
+
+.gallery {
+  height: 80% !important;
+  box-sizing: border-box;
+  text-align: center !important;
+  align-items: center !important;
+}
+
+.gallery-wrapper {
+  text-align: center;
+  margin-top: 50px;
+  .ngx-gallery {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+}
+.hide-mobile {
+  display: block;
+}
+@media screen and (max-width: "375px") {
+  .hide-mobile {
+    display: none;
+  }
+}

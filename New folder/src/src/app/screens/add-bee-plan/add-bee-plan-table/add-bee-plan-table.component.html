@@ -1,0 +1,69 @@
+<table mat-table [dataSource]="dataSource" class="table">
+
+    <ng-container matColumnDef="plant"
+     > 
+      <th mat-header-cell *matHeaderCellDef>צמח</th>
+      <td [attr.colspan]="1"  mat-cell *matCellDef="let element">{{ element.tzemach }}</td>
+    </ng-container>
+    <ng-container matColumnDef="totalCount"
+     > 
+      <th mat-header-cell *matHeaderCellDef>כמות</th>
+      <td [attr.colspan]="1"  mat-cell *matCellDef="let element">{{ element.kamut }}</td>
+    </ng-container>
+    <ng-container matColumnDef="ashtaol"
+     > 
+      <th mat-header-cell *matHeaderCellDef>אשתאול</th>
+      <td [attr.colspan]="1"  mat-cell *matCellDef="let element; let i = index">
+        <input 
+          [ngClass]="{ error: checkStatus(i) }"
+          (change)="checkTotalCount($event, i, 'ashtaol')"
+          type="number"
+        />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="golani"
+     > 
+      <th mat-header-cell *matHeaderCellDef>גולני</th>
+      <td [attr.colspan]="1"  mat-cell *matCellDef="let element; let i = index">
+        <input
+          [ngClass]="{ error: checkStatus(i) }"
+          (change)="checkTotalCount($event, i, 'golani')"
+          type="number"
+        />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="gilat"
+     > 
+      <th mat-header-cell *matHeaderCellDef>גילת</th>
+      <td [attr.colspan]="1"  mat-cell *matCellDef="let element; let i = index">
+        <input
+          [ngClass]="{ error: checkStatus(i) }"
+          (change)="checkTotalCount($event, i, 'gilat')"
+          type="number"
+        />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="controllers"
+     > 
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td [attr.colspan]="1"  mat-cell *matCellDef="let element; let i = index">
+        <span (click)="deleteItem(i,element)" class="delete">מחק</span>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <br>
+  <!-- <button (click)="saveBeePlan()">save43432</button> -->
+
+   <!-- <app-pagination
+  (newPage)="updateTableArray($event)"
+  pagesCount="{{ pagesCount }}"
+  paginationCount="9"
+  currentPage="1"
+  *ngIf="dataSource!=null">
+></app-pagination>  -->
+
+  
+  

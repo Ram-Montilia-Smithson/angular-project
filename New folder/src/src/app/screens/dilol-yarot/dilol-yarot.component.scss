@@ -1,0 +1,13 @@
+.main{
+    height: calc(100% - 90px);
+    background-image: url("../../../assets/images/new-dashboard-background.jpg");
+    position: relative;
+    display: flex;
+    width: 100% !important;
+}
+::ng-deep app-spinner-old{
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+  }

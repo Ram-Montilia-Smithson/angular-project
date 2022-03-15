@@ -1,0 +1,12 @@
+.new-spatial-table{
+    height: 100%;
+    margin:0 auto; 
+
+    ::mg-deep .mat-column-actions{
+        align-items: flex-end !important;
+    }
+
+    ::ng-deep .mat-form-field{
+        font-size: 1.2rem !important; 
+    } 
+}

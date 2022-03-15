@@ -1,0 +1,19 @@
+<button
+  [disabled]="event === 'create' || event === 'edit'"
+  [ngClass]="{
+    disabled: event === 'create' || event === 'edit'
+  }"
+  appBorder
+  mat-raised-button
+  (click)="onCreate()"
+>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+    <kkl-typography
+      [color]="'text'"
+      [disabled]="event === 'create' || event === 'edit'"
+      [size]="1.6"
+    >
+      {{ label }}
+    </kkl-typography>
+  </div>
+</button>

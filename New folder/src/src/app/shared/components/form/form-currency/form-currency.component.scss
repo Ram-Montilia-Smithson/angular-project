@@ -1,0 +1,33 @@
+.currency-input {
+    position: relative;
+    flex-direction: row-reverse;
+    ::ng-deep .number-input {
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+    .number-input {
+        ::ng-deep input.mat-input-element {
+            max-width: 50%;
+        }
+    }
+    .select-currency {
+        position: absolute;
+        bottom: 0.3rem;
+        left: 1rem;
+        ::ng-deep kkl-icon {
+            position: absolute;
+            left: -0.5rem;
+            bottom: -0.6rem;     
+        }
+        ::ng-deep mat-select {
+            border-right: 1px solid #CBC9C9;
+            padding: 0.8rem;
+        }
+        * {
+            text-align: center;
+        }
+    }
+}

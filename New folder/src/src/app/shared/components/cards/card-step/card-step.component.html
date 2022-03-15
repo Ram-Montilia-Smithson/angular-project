@@ -1,0 +1,62 @@
+<div
+  [ngClass]="step.type"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxFill
+>
+  <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
+    <div
+      appSize
+      [size]="6"
+      (click)="onStepClick()"
+      [matBadge]="step.value"
+      matBadgeColor="accent"
+      matBadgeSize="medium"
+    >
+      <mat-card
+        appVariant
+        [type]="step.type"
+        [variant]="step.variant"
+        [ngClass]="{
+          'mat-elevation-z0': true,
+          active: (active$ | async)
+        }"
+      >
+        <mat-card-content appButton>
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="80">
+              <kkl-icon
+                [color]="(active$ | async) ? 'paper' : 'default'"
+                [stroke]="(active$ | async) ? 'paper' : 'default'"
+                [key]="step.svgUrl"
+                [size]="step.size"
+              >
+              </kkl-icon>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div
+      class="label-container"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxFlex="40"
+    >
+      <kkl-typography
+        [ngClass]="{ active: (active$ | async) }"
+        [bold]="(active$ | async) ? 600 : 500"
+        [size]="1.4"
+      >
+        {{ step.label }}
+      </kkl-typography>
+    </div>
+  </ng-container>
+
+  <ng-template #mobileBlock>
+    <div
+      (click)="onStepClick()"
+      [ngClass]="{ active: step.isActive, button: true }"
+    ></div>
+  </ng-template>
+</div>

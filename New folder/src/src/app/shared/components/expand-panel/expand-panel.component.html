@@ -1,0 +1,26 @@
+<mat-expansion-panel
+  dir="rtl"
+  [hideToggle]="hideToggle"
+  [expanded]="expanded"
+  [disabled]="disabled"
+  [ngClass]="[variant, 'default', 'mat-elevation-z0']"
+  (closed)="onPanelClosed()"
+  (opened)="onPanelOpen()"
+>
+  <mat-expansion-panel-header
+    *ngIf="!hideHeader"
+    [ngClass]="[variant]"
+    (click)="onPanelExpend()"
+  >
+    <mat-panel-title [ngClass]="[variant, 'default']">
+      <ng-content select="[title]"></ng-content>
+    </mat-panel-title>
+    <mat-panel-description>
+      <ng-content select="[description]"></ng-content>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <div class="content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</mat-expansion-panel>

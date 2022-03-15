@@ -1,0 +1,57 @@
+$toolbar-height: 10rem;
+$bottomBar-height: 8rem;
+$menu-width: 24.6rem;
+$wizard-width: 8.5rem;
+$content-height: calc(100% - #{$toolbar-height});
+$font-size: 10px;
+
+$primary: #37c56b;
+$accent: #448ecd;
+
+$paper: #fff;
+
+$default: #bababa;
+$disable: rgba(0, 0, 0, 0.26);
+$table: #f8f8f8;
+
+$text: #000000;
+$text-light: #a2a2a2;
+
+$warn: #d83020;
+
+$success: #59a437;
+$success-light: #37c56b;
+
+$box-shadow-primary: 0px 0px 5px 5px rgba(#37c56b, 0.37); 
+$box-shadow-gray: -2px 1px 5px 5px rgba(#d1d1d1, 0.4);
+
+$colors: (
+  primary: $primary,
+  accent: $accent,
+  default: $default,
+  disable: $disable,
+  paper: $paper,
+  table: $table,
+  text: $text,
+  text-light: $text-light,
+  warn: $warn,
+  success: $success,
+  success-light: $success-light,
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@function colorWithOpacity($color-name, $opacity) {
+  @return rgba(map-get($colors, $color-name), $opacity);
+}
+
+@function spacing($spacing) {
+  @return $spacing * 8px;
+}
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}

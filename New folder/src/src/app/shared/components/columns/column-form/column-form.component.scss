@@ -1,0 +1,27 @@
+@use "variables" as main;
+
+.column-input {
+  width: inherit;
+
+  input {
+    width: inherit;
+    border-radius: 5px;
+    border: 1px solid color(text);
+
+
+    &.error {
+      border: 2px solid color(warn);
+
+    }
+  }
+}
+
+::ng-deep div.kkl-column-filter {
+  mat-form-field {
+    .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
+  }
+
+}
+
