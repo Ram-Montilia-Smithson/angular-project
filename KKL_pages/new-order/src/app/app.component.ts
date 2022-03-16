@@ -12,24 +12,24 @@ import { Observable, of } from 'rxjs';
 export class AppComponent {
 
   public logos!: IconModel[];
-  // public control:FormControl = new FormControl();
-  // public endDrawerOpen: boolean = false;
-  // public openDrawer!: number;
-  // public portion$!: Observable<number>;
-  // public closedDrawer!: number;
-  // public drawerSize$!: Observable<number>;
-  // public showSave$!: Observable<boolean>;
+  public control:FormControl = new FormControl();
+  public endDrawerOpen: boolean = false;
+  public openDrawer!: number;
+  public portion$!: Observable<number>;
+  public closedDrawer!: number;
+  public drawerSize$!: Observable<number>;
+  public showSave$!: Observable<boolean>;
 
-  // status: StatusBarsModel = {
-  //   label: 'ממתין לשקילה',
-  //   authorizedBars: 2,
-  //   totalBars: 6,
-  // };
+  status: StatusBarsModel = {
+    label: 'ממתין לשקילה',
+    authorizedBars: 2,
+    totalBars: 6,
+  };
 
   constructor(
-    // private navbarService: NavbarService,
-    // private routerService: RouterService,
-    // private stepperLayoutService: StepperLayoutService
+    private navbarService: NavbarService,
+    private routerService: RouterService,
+    private stepperLayoutService: StepperLayoutService
     ) { }
 
   ngOnInit(): void {
@@ -69,40 +69,40 @@ export class AppComponent {
     }),
   ];
 
-  // public onCardClick(path: string) {
-  //   const url: string = `layout/${path}`;
-  //   this.routerService.navigate(url);
-  // }
+  public onCardClick(path: string) {
+    const url: string = `layout/${path}`;
+    this.routerService.navigate(url);
+  }
 
-  // onEndDrawerEmitted() {
-  //   let portion: number = 0;
-  //   this.endDrawerOpen = !this.endDrawerOpen;
-  //   if (!this.endDrawerOpen) {
-  //     this.stepperLayoutService.emitDrawerSizeChanged(this.openDrawer);
-  //     portion = 100 - this.openDrawer;
-  //     this.portion$ = of(portion);
-  //   } else {
-  //     this.stepperLayoutService.emitDrawerSizeChanged(this.closedDrawer);
-  //     portion = 100 - this.closedDrawer;
-  //     this.portion$ = of(portion);
-  //   }
-  // }
+  onEndDrawerEmitted() {
+    let portion: number = 0;
+    this.endDrawerOpen = !this.endDrawerOpen;
+    if (!this.endDrawerOpen) {
+      this.stepperLayoutService.emitDrawerSizeChanged(this.openDrawer);
+      portion = 100 - this.openDrawer;
+      this.portion$ = of(portion);
+    } else {
+      this.stepperLayoutService.emitDrawerSizeChanged(this.closedDrawer);
+      portion = 100 - this.closedDrawer;
+      this.portion$ = of(portion);
+    }
+  }
 
-  // private navigate(path: string) {
-  //   path = `/${path}`;
-  //   this.routerService.navigate(path);
-  // }
+  private navigate(path: string) {
+    path = `/${path}`;
+    this.routerService.navigate(path);
+  }
 
-  // public onChangeStep(step: CardStepModel) {
-  //   this.navigate(step.path!);
-  // }
+  public onChangeStep(step: CardStepModel) {
+    this.navigate(step.path!);
+  }
 
-  // public onNext(step: CardStepModel) {
-  //   this.navigate(step.path!);
-  // }
+  public onNext(step: CardStepModel) {
+    this.navigate(step.path!);
+  }
 
-  // public onPrevious(): void {
-  //   this.routerService.goBack();
-  // }
+  public onPrevious(): void {
+    this.routerService.goBack();
+  }
 
 }
