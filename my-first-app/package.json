@@ -1,6 +1,7 @@
 {
-  "name": "my-first-app",
-  "version": "0.0.0",
+  "name": "@ram-montilia-smithson/my-first-app",
+  "version": "1.0.0",
+  "repository": "git://github.com/Ram-Montilia-Smithson/angular-project/tree/main/my-first-app.git",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
